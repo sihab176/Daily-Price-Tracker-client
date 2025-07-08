@@ -4,9 +4,8 @@ import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { AuthContext } from "../../Provider/AuthProvider";
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, logOutUser } = use(AuthContext);
   console.log(user);
-  // const user = true;
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => setIsOpen(!isOpen);
 
@@ -26,6 +25,9 @@ const Navbar = () => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
     setIsDark(darkMode);
+  };
+  const handleLogOut = () => {
+    logOutUser();
   };
 
   // const links=<>
@@ -196,12 +198,18 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      {/* user and logout buttons  */}
       <div className="navbar-end flex items-center ">
-        <div className="mr-4 ring rounded-full p-2 text-green-700">
+        {
+          user? <img className="rounded-full w-9 mr-4 border-3 border-primary" src={user?.photoURL} alt="" /> :<div className="mr-4 ring rounded-full p-2 text-green-700">
           <FaUser className="text-sky-800" />
         </div>
+        }
         {user ? (
-          <button className="btn btn-sm bg-teal-600 font-bold lg:block hidden">
+          <button
+            onClick={handleLogOut}
+            className="btn btn-sm bg-teal-600 font-bold lg:block hidden"
+          >
             logOut
           </button>
         ) : (

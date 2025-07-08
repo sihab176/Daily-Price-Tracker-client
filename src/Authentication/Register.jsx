@@ -7,23 +7,38 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxios from "../hooks/useAxios";
 
 const Register = () => {
   const [profilePicture, setProfilePicture] = useState("");
   const { createUser, updateUser } = useAuth();
-  const navigate =useNavigate()
+  const axiosInstance = useAxios();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  //! HANDLE SUBMIT =================================>
   const onSubmit = (data) => {
-    console.log(data, profilePicture);
-    createUser(data.email, data.password).then((res) => {
-    console.log(res);
 
-      //! update user ===================>
+
+    //! CREATE USER  ------------->
+    createUser(data.email, data.password).then(async (res) => {
+      console.log(res);
+
+      //!SAVE INTO DATABASE ------>
+      const userData = {
+        email: data.email,
+        role: "user",
+        created_at: new Date().toISOString(),
+        last_login: new Date().toISOString(),
+      };
+      const result = await axiosInstance.post("/user", userData);
+      console.log("result========>", result);
+
+      //! update user ------------->
       const userProfileInfo = {
         displayName: data.name,
         photoURL: profilePicture,
