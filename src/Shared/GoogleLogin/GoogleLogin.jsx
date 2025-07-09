@@ -4,7 +4,7 @@ import useAxios from "../../hooks/useAxios";
 
 const GoogleLogin = () => {
   const { googleLogin } = use(AuthContext);
-  const axiosInstance =useAxios()
+  const axiosInstance = useAxios();
 
   const handelGoogleLogin = () => {
     googleLogin()

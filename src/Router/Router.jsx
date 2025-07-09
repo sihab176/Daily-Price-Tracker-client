@@ -3,6 +3,8 @@ import RootLayout from "../component/layout/RootLayout/RootLayout";
 import Home from "../Pages/Home/Home";
 import Register from "../Authentication/Register";
 import Login from "../Authentication/Login";
+import DashboardLayout from "../DashboardLayout/DashboardLayout";
+import AddProduct from "../Pages/AddProduct/AddProduct";
 
 export const router = createBrowserRouter([
   {
@@ -22,5 +24,10 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     Component: Login,
+  },
+  {
+    path: "/dashboard",
+    Component: DashboardLayout,
+    children: [{ path: "addProduct", Component: AddProduct }],
   },
 ]);

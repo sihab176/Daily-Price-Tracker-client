@@ -3,6 +3,9 @@ import { Link, NavLink } from "react-router";
 import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { AuthContext } from "../../Provider/AuthProvider";
+import "./nav.css";
+
+// TODO : ========================================= NAVBAR =========================================>
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
   console.log(user);
@@ -30,11 +33,17 @@ const Navbar = () => {
     logOutUser();
   };
 
-  // const links=<>
-  // <li><NavLink></NavLink></li>
-  // <li><NavLink></NavLink></li>
-  // <li><NavLink></NavLink></li>
-  // </>
+  const links = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard">DashBoard</NavLink>
+      </li>
+      {/* <li><NavLink></NavLink></li> */}
+    </>
+  );
   return (
     <div className="navbar bg-base-200 shadow-sm">
       <div className="navbar-start">
@@ -120,23 +129,7 @@ const Navbar = () => {
               </button>
             </div>
 
-            <ul className="p-4 space-y-2">
-              <li>
-                <a href="#" className="block text-gray-700">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="block text-gray-700">
-                  About
-                </a>
-              </li>
-              <li className="">
-                <a href="#" className="block text-gray-700">
-                  Contact
-                </a>
-              </li>
-            </ul>
+            <ul className="p-4 space-y-2">{links}</ul>
           </div>
         </div>
         {/* logo================== */}
@@ -155,26 +148,8 @@ const Navbar = () => {
       </div>
       {/* routes links ============ */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
+        <ul className="gap-10 menu-horizontal px-1">
+          {links}
           <li>
             {/* toggle =================*/}
             <div className="mr-8">
@@ -200,11 +175,17 @@ const Navbar = () => {
       </div>
       {/* user and logout buttons  */}
       <div className="navbar-end flex items-center ">
-        {
-          user? <img className="rounded-full w-9 mr-4 border-3 border-primary" src={user?.photoURL} alt="" /> :<div className="mr-4 ring rounded-full p-2 text-green-700">
-          <FaUser className="text-sky-800" />
-        </div>
-        }
+        {user ? (
+          <img
+            className="rounded-full w-9 mr-4 border-3 border-primary"
+            src={user?.photoURL}
+            alt=""
+          />
+        ) : (
+          <div className="mr-4 ring rounded-full p-2 text-green-700">
+            <FaUser className="text-sky-800" />
+          </div>
+        )}
         {user ? (
           <button
             onClick={handleLogOut}
