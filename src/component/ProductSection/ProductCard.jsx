@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 const ProductCard = ({ product }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  console.log(product);
 
   // Filter today's price from price history
   const today = new Date().toISOString().split("T")[0];

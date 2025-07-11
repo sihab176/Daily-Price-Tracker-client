@@ -6,6 +6,8 @@ import Login from "../Authentication/Login";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import AddProduct from "../Pages/AddProduct/AddProduct";
 import MyProducts from "../Pages/vendor/MyProducts/MyProducts";
+import AddAdvertisement from "../Pages/vendor/AddAdvertisement/AddAdvertisement";
+import MyAdvertisements from "../Pages/vendor/MyAdvertisements/MyAdvertisements";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,8 @@ export const router = createBrowserRouter([
     children: [
       { path: "addProduct", Component: AddProduct },
       { path: "myProducts", Component: MyProducts },
+      { path: "addAdvertisement", Component: AddAdvertisement },
+      { path: "myAdvertisements", Component: MyAdvertisements },
     ],
   },
 ]);
