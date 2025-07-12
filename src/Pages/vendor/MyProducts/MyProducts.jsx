@@ -13,7 +13,8 @@ const MyProducts = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const { user } = useAuth();
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState({});
+  // console.log("setSelectedProduct", selectedProduct);
 
   // ✅ Get my products
   const { data: products = [], isLoading } = useQuery({
@@ -55,11 +56,14 @@ const MyProducts = () => {
   };
 
   const openModal = (product) => {
-    setSelectedProduct(product);
-    // document.getElementById("my_modal_3").showModal();
+    console.log({ product });
+    setSelectedProduct({...product});
     document.getElementById("my_modal_4").showModal();
   };
-
+  const closeModal = () => {
+    setSelectedProduct({});
+    document.getElementById("my_modal_4").close();
+  };
   if (isLoading) return <LoadingComponent></LoadingComponent>;
 
   return (
@@ -126,7 +130,10 @@ const MyProducts = () => {
             )}
           </tbody>
         </table>
-        <UpdateProduct product={selectedProduct} />
+        <UpdateProduct
+          selectedProduct={{ ...selectedProduct }}
+          closeModal={closeModal}
+        />
       </div>
     </div>
   );

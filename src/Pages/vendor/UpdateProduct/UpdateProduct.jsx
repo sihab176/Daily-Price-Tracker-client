@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -6,28 +6,32 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
 
-const UpdateProduct = ({ product }) => {
-  console.log("product========>", product);
-  const {
-    pricePerUnit,
-    marketName,
-    marketDescription,
-    itemName,
-    itemDescription,
-    image,
-    _id,
-    prices,
-  } = product || {};
+const UpdateProduct = ({ selectedProduct, closeModal }) => {
+  console.log("selectedProduct========>", selectedProduct);
+  // const {
+  //   pricePerUnit,
+  //   marketName,
+  //   marketDescription,
+  //   itemName,
+  //   itemDescription,
+  //   image,
+  //   _id,
+  //   prices,
+  // } = selectedProduct || {};
+
+  const { register, handleSubmit, control, reset } = useForm();
+  useEffect(() => {
+    if (selectedProduct) {
+      reset({
+        ...selectedProduct,
+        prices: selectedProduct.prices || [],
+      });
+    }
+  }, [selectedProduct, reset]);
 
   const { user } = useAuth();
   const [date, setDate] = useState(new Date());
   const axiosSecure = useAxiosSecure();
-
-  const { register, handleSubmit, control, reset } = useForm({
-    defaultValues: {
-      prices: [{ date: new Date().toISOString().slice(0, 10), price: "" }],
-    },
-  });
 
   // !   USE FIELD ================= >
   const { fields, append, remove } = useFieldArray({
@@ -37,6 +41,7 @@ const UpdateProduct = ({ product }) => {
 
   //! ================================ ON SUBMIT ===========================================>
   const onSubmit = async (data) => {
+    // console.log("data", data);
     const productData = {
       ...data,
       date: date.toISOString().slice(0, 10),
@@ -44,8 +49,9 @@ const UpdateProduct = ({ product }) => {
       vendorEmail: user?.email,
       vendorName: user?.displayName,
     };
+    closeModal();
 
-    console.log(productData);
+    console.log("post data ", productData);
 
     // try {
     //   const res = await axiosSecure.put(`/vendors/${_id}`, productData);
@@ -91,7 +97,7 @@ const UpdateProduct = ({ product }) => {
                 {...register("marketName")}
                 type="text"
                 placeholder="🏪 Market Name"
-                defaultValue={marketName}
+                // defaultValue={marketName}
                 className="input input-bordered w-full"
               />
 
@@ -106,7 +112,7 @@ const UpdateProduct = ({ product }) => {
                 {...register("marketDescription")}
                 className="textarea textarea-bordered w-full"
                 placeholder="📝 Market Description"
-                defaultValue={marketDescription}
+                // defaultValue={marketDescription}
               ></textarea>
 
               {/* Product Info */}
@@ -114,7 +120,7 @@ const UpdateProduct = ({ product }) => {
                 {...register("itemName")}
                 type="text"
                 placeholder="🥦 Item Name"
-                defaultValue={itemName}
+                // defaultValue={itemName}
                 className="input input-bordered w-full"
               />
               {/* PRICE */}
@@ -122,7 +128,7 @@ const UpdateProduct = ({ product }) => {
                 {...register("pricePerUnit")}
                 type="text"
                 placeholder="💵 Price per Unit (e.g., ৳30/kg)"
-                defaultValue={pricePerUnit}
+                // defaultValue={pricePerUnit}
                 className="input input-bordered w-full"
               />
               {/* IMAGE */}
@@ -130,7 +136,7 @@ const UpdateProduct = ({ product }) => {
                 {...register("image")}
                 type="text"
                 placeholder="🖼️ Image URL"
-                defaultValue={image}
+                // defaultValue={image}
                 className="input input-bordered w-full"
               />
 
@@ -145,14 +151,14 @@ const UpdateProduct = ({ product }) => {
                       type="date"
                       {...register(`prices.${index}.date`)}
                       className="input input-bordered"
-                      defaultValue={item.date}
+                      // defaultValue={item.date}
                     />
                     <input
                       type="number"
                       {...register(`prices.${index}.price`)}
                       placeholder="৳"
                       className="input input-bordered"
-                      defaultValue={item.price}
+                      // defaultValue={item.price}
                     />
                     {index > 0 && (
                       <button
@@ -183,7 +189,7 @@ const UpdateProduct = ({ product }) => {
               <textarea
                 {...register("itemDescription")}
                 placeholder="📝 Item Description (optional)"
-                defaultValue={itemDescription}
+                // defaultValue={itemDescription}
                 className="textarea textarea-bordered w-full"
               ></textarea>
 

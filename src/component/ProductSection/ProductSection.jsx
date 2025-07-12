@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import ProductCard from "./ProductCard";
 import useAxios from "../../hooks/useAxios";
-import Discount from "../../assets/discount.avif";
+
 
 const ProductSection = () => {
   //   const axiosSecure = useAxiosSecure();
@@ -26,13 +26,7 @@ const ProductSection = () => {
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
-      {/* test =============> */}
-      <div
-        className={`w-full h-[350px] bg-cover bg-center object-cover border bg-no-repeat `}
-        style={{ backgroundImage: `url(${Discount})` }}
-      >
-        {/* <h1 className="text-4xl font-bold">20 % Discount </h1> */}
-      </div>
+   
     </section>
   );
 };
