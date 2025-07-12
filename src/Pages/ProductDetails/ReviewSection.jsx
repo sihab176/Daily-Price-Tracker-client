@@ -51,7 +51,7 @@ const ReviewSection = ({ productId, user }) => {
       <h3 className="text-lg font-bold mb-4">🗣️ Reviews & Comments</h3>
 
       {reviews.map((rev, idx) => (
-        <div key={idx} className="border p-4 mb-3 rounded-md bg-gray-50">
+        <div key={idx} className="border p-4 mb-3 rounded-md bg-base-200">
           <div className=" flex flex-col md:flex-row">
             <div className="">
               <img

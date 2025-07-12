@@ -27,7 +27,7 @@ const ProductDetails = () => {
       return res.data;
     },
   });
-
+  console.log(product);
   // ✅ Add to Watchlist
   const handleWatchlist = async () => {
     try {
@@ -73,7 +73,7 @@ const ProductDetails = () => {
       <h2 className="text-2xl font-bold mb-4">{product.itemName}</h2>
 
       <div className="grid md:grid-cols-2 gap-6 ">
-        <img src={product.image} alt="product" className="rounded-xl shadow" />
+        <img src={product.image} alt="product" className="rounded-xl shadow bg-base-200" />
         <div className="space-y-6 mt-20">
           <p>
             <strong>🏪 Market:</strong> {product.marketName}
