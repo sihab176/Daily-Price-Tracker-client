@@ -8,16 +8,7 @@ import { toast } from "react-toastify";
 
 const UpdateProduct = ({ selectedProduct, closeModal }) => {
   console.log("selectedProduct========>", selectedProduct);
-  // const {
-  //   pricePerUnit,
-  //   marketName,
-  //   marketDescription,
-  //   itemName,
-  //   itemDescription,
-  //   image,
-  //   _id,
-  //   prices,
-  // } = selectedProduct || {};
+  const { _id, prices } = selectedProduct || {};
 
   const { register, handleSubmit, control, reset } = useForm();
   useEffect(() => {
@@ -53,17 +44,15 @@ const UpdateProduct = ({ selectedProduct, closeModal }) => {
 
     console.log("post data ", productData);
 
-    // try {
-    //   const res = await axiosSecure.put(`/vendors/${_id}`, productData);
-    //   if (res.data.insertedId) {
-    //     toast.success("Product updated  successfully!");
-
-    //     reset();
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    //   toast.error("Failed to update product");
-    // }
+    try {
+      const res = await axiosSecure.put(`/vendors/${_id}`, productData);
+      if (res.data.insertedId) {
+        toast.success("Product updated  successfully!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to update product");
+    }
   };
 
   return (

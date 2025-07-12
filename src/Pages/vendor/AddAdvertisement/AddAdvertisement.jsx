@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 
@@ -19,18 +19,18 @@ const AddAdvertisement = () => {
       vendorName: user?.displayName || "Unknown",
     };
     console.log("adData", adData);
-    // try {
-    //   const res = await axiosSecure.post("/advertisements", adData);
-    //   if (res.data.insertedId) {
-    //     toast.success("Advertisement submitted successfully!");
-    //     reset();
-    //   } else {
-    //     toast.error("Failed to submit ad.");
-    //   }
-    // } catch (err) {
-    //     console.log(err);
-    //   toast.error("Something went wrong.");
-    // }
+    try {
+      const res = await axiosSecure.post("/advertisements", adData);
+      if (res.data.insertedId) {
+        toast.success("Advertisement submitted successfully!");
+        reset();
+      } else {
+        toast.error("Failed to submit ad.");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Something went wrong.");
+    }
   };
 
   return (
@@ -79,6 +79,7 @@ const AddAdvertisement = () => {
           <button className="btn btn-primary">Submit Advertisement</button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

@@ -8,7 +8,7 @@ import "./nav.css";
 // TODO : ========================================= NAVBAR =========================================>
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
-  console.log(user);
+  // console.log(user);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => setIsOpen(!isOpen);
 

@@ -17,7 +17,11 @@ const MyProducts = () => {
   // console.log("setSelectedProduct", selectedProduct);
 
   // ✅ Get my products
-  const { data: products = [], isLoading } = useQuery({
+  const {
+    data: products = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["my-products", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/products/vendor/${user.email}`);
@@ -54,14 +58,16 @@ const MyProducts = () => {
       }
     });
   };
-
+  // ! open Modal ======>
   const openModal = (product) => {
     console.log({ product });
-    setSelectedProduct({...product});
+    setSelectedProduct({ ...product });
     document.getElementById("my_modal_4").showModal();
   };
+  // ! close Modal ====>
   const closeModal = () => {
     setSelectedProduct({});
+    refetch();
     document.getElementById("my_modal_4").close();
   };
   if (isLoading) return <LoadingComponent></LoadingComponent>;

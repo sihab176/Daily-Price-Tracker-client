@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -17,7 +17,9 @@ const MyAdvertisements = () => {
   const { data: ads = [], isLoading } = useQuery({
     queryKey: ["my-ads", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/advertisements?vendor=${user?.email}`);
+      const res = await axiosSecure.get(
+        `/advertisements?vendor=${user?.email}`
+      );
       return res.data;
     },
   });
@@ -48,8 +50,10 @@ const MyAdvertisements = () => {
     },
     onError: () => toast.error("Delete failed"),
   });
-// ! Handle Delete  
+
+  // ! Handle Delete
   const handleDelete = (id) => {
+    console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You want to delete this ad?",
@@ -108,7 +112,7 @@ const MyAdvertisements = () => {
                     {ad.status}
                   </span>
                 </td>
-                <td className="flex gap-2 justify-center">
+                <td className="flex gap-2 justify-center pt-6">
                   <button
                     onClick={() => setEditingAd(ad)}
                     className="btn btn-xs btn-outline"
@@ -137,7 +141,7 @@ const MyAdvertisements = () => {
 
       {/* ✅ Update Modal */}
       {editingAd && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0  bg-opacity-70 backdrop-blur flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-xl w-full max-w-md shadow-lg relative">
             <h3 className="text-lg font-bold mb-4">Update Advertisement</h3>
             <form onSubmit={handleUpdate} className="space-y-4">
@@ -172,6 +176,7 @@ const MyAdvertisements = () => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

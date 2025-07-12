@@ -8,6 +8,8 @@ import AddProduct from "../Pages/AddProduct/AddProduct";
 import MyProducts from "../Pages/vendor/MyProducts/MyProducts";
 import AddAdvertisement from "../Pages/vendor/AddAdvertisement/AddAdvertisement";
 import MyAdvertisements from "../Pages/vendor/MyAdvertisements/MyAdvertisements";
+import ProductCard from "../component/ProductSection/ProductCard";
+import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +20,7 @@ export const router = createBrowserRouter([
         index: true,
         Component: Home,
       },
+      { path: "/productDetails/:id", Component: ProductDetails },
     ],
   },
   {
