@@ -134,7 +134,7 @@ const UpdateProduct = ({ selectedProduct, closeModal }) => {
                 <label className="font-semibold block mb-2">
                   💵 Price History
                 </label>
-                {prices?.map((item, index) => (
+                {fields?.map((item, index) => (
                   <div key={item.id} className="grid grid-cols-2 gap-2 mb-2">
                     <input
                       type="date"

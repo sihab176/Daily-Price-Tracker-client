@@ -10,6 +10,7 @@ import AddAdvertisement from "../Pages/vendor/AddAdvertisement/AddAdvertisement"
 import MyAdvertisements from "../Pages/vendor/MyAdvertisements/MyAdvertisements";
 import ProductCard from "../component/ProductSection/ProductCard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
+import AllProducts from "../Pages/AllProduct/AllProduct";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       { path: "/productDetails/:id", Component: ProductDetails },
+      { path: "/allProduct", Component: AllProducts },
     ],
   },
   {

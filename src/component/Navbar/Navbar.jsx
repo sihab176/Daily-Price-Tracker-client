@@ -8,20 +8,18 @@ import "./nav.css";
 // TODO : ========================================= NAVBAR =========================================>
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
-  // console.log(user);
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = () => setIsOpen(!isOpen);
-
   const [isDark, setIsDark] = useState(false);
 
-  // Load theme from localStorage on first render
+  // !Load theme from localStorage on first render ===========>
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
     document.documentElement.setAttribute("data-theme", savedTheme);
     setIsDark(savedTheme === "dark");
   }, []);
 
-  // Handle switch toggle
+  //! Handle switch toggle  ===================================>
   const switchTheme = (e) => {
     const darkMode = e.target.checked;
     const theme = darkMode ? "dark" : "light";
@@ -29,10 +27,11 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
     setIsDark(darkMode);
   };
+  //! HANDLE LOGOUT   =========================================>
   const handleLogOut = () => {
     logOutUser();
   };
-
+  // ! links of route ============================================>
   const links = (
     <>
       <li>
@@ -41,7 +40,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/dashboard">DashBoard</NavLink>
       </li>
-      {/* <li><NavLink></NavLink></li> */}
+      <li>
+        <NavLink> All Products</NavLink>
+      </li>
     </>
   );
   return (

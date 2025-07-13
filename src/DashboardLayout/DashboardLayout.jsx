@@ -13,13 +13,13 @@ import { RiEBike2Line, RiEBikeFill } from "react-icons/ri";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaPlusSquare, FaBullhorn, FaChartBar } from "react-icons/fa";
 import TracLogo from "../Shared/TracLogo/TracLogo";
+import Footer from "../component/Footer/Footer";
 
 const DashboardLayout = () => {
   const role = true;
 
   return (
     <section>
-      
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
@@ -61,7 +61,7 @@ const DashboardLayout = () => {
           </div>
           <Outlet />
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side fixed">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
@@ -128,6 +128,7 @@ const DashboardLayout = () => {
           </ul>
         </div>
       </div>
+      <Footer />
     </section>
   );
 };
