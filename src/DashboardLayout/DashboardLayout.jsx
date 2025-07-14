@@ -9,7 +9,7 @@ import {
   FaSearchLocation,
   FaUserClock,
 } from "react-icons/fa";
-import { RiEBike2Line, RiEBikeFill } from "react-icons/ri";
+import { RiEBike2Line, RiEBikeFill, RiLineChartLine } from "react-icons/ri";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaPlusSquare, FaBullhorn, FaChartBar } from "react-icons/fa";
 import TracLogo from "../Shared/TracLogo/TracLogo";
@@ -76,12 +76,18 @@ const DashboardLayout = () => {
                 Home
               </Link>
             </li>
-            {/* <li>
-              <NavLink to="/dashboard/myParcel">
-                <FaBoxOpen className="inline-block mr-2" />
-                My Parcels
-              </NavLink>
-            </li> */}
+
+            {/* users */}
+            {role && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/viewPriceTrends">
+                    <RiLineChartLine className="inline-block mr-2" />
+                    ViewPriceTrends
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* vendor deliveries */}
 
@@ -114,17 +120,17 @@ const DashboardLayout = () => {
               </>
             )}
 
-            {/* admin */}
-            {role && (
-              <>
-                <li>
-                  <NavLink to="/dashboard/assignRider">
-                    <RiEBikeFill className="inline-block mr-2" />
-                    Assign Rider
-                  </NavLink>
-                </li>
-              </>
-            )}
+            {/* admin
+            // {role && (
+            //   <>
+            //     <li>
+            //       <NavLink to="/dashboard/assignRider">
+            //         <RiEBikeFill className="inline-block mr-2" />
+            //         Assign Rider
+            //       </NavLink>
+            //     </li>
+            //   </>
+            // )} */}
           </ul>
         </div>
       </div>

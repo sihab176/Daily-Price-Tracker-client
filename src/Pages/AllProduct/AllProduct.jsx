@@ -3,9 +3,13 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Nodata from "../../assets/nodata-2.webp";
+
+import { CiCalendarDate, CiShop } from "react-icons/ci";
+import { FaHospitalUser } from "react-icons/fa";
+import { IoPricetagsOutline } from "react-icons/io5";
 
 const AllProducts = () => {
   const axiosSecure = useAxiosSecure();
@@ -26,7 +30,8 @@ const AllProducts = () => {
         }
 
         if (selectedDate) {
-          const dateStr = selectedDate.toISOString().split("T")[0];
+          const dateStr = selectedDate.toLocaleDateString("en-CA");
+          console.log("dateStr", dateStr, selectedDate);
           url += `&date=${dateStr}`;
         }
 
@@ -52,7 +57,17 @@ const AllProducts = () => {
           <label className="font-medium">📅 Filter by Date:</label>
           <DatePicker
             selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
+            onChange={(date) => {
+              // Just use the date directly without time components
+              if (date) {
+                const newDate = new Date(
+                  date.getFullYear(),
+                  date.getMonth(),
+                  date.getDate()
+                );
+                setSelectedDate(newDate);
+              }
+            }}
             placeholderText="Select date"
             className="input input-bordered"
           />
@@ -74,46 +89,55 @@ const AllProducts = () => {
       </div>
 
       {/* Products List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <div
-            key={product._id}
-            className="border p-4 rounded shadow hover:shadow-lg transition-all bg-white"
-          >
-            <img
-              src={product.image}
-              alt={product.itemName}
-              className="w-full h-40 object-contain mb-3"
-            />
-            <h3 className="text-lg font-bold mb-1">🥕 {product.itemName}</h3>
-            <p>💵 Price: ৳{product.pricePerUnit}/kg</p>
-            <p>📅 Date: {product.date}</p>
-            <p>🏪 Market: {product.marketName}</p>
-            <p>👨‍🌾 Vendor: {product.vendorName}</p>
 
-            <button
-              className="btn btn-sm btn-primary mt-3"
-              onClick={() => {
-                if (!user) {
-                  navigate("/login");
-                } else {
-                  navigate(`/products/${product._id}`);
-                }
-              }}
-            >
-              🔍 View Details
-            </button>
-          </div>
-        ))}
-       
-      </div>
-       {products.length === 0 && (
-          <div className=" my-20 flex justify-center items-center text-center ">
-            <div>
-              <img className="" src={Nodata} alt="" />
+      <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <div className="card bg-base-200 w-[360px] shadow-sm">
+            <figure className={`bg-sky-100 py-9`}>
+              <img
+                src={product?.image}
+                alt="Shoes"
+                className="w-full h-40 object-contain "
+              />
+            </figure>
+            <div className=" py-3 px-4 space-y-2">
+              <h3 className="text-lg font-bold mb-1">{product.itemName}</h3>
+              <p className="flex items-center gap-1">
+                <IoPricetagsOutline />
+                <strong>Price:</strong> ৳{product.pricePerUnit}/kg
+              </p>
+              <p className="flex items-center gap-1">
+                <CiCalendarDate />
+                <strong>Date:</strong> {product.date}
+              </p>
+              <p className="flex items-center gap-1">
+                <CiShop />
+                <strong>Market:</strong> {product.marketName}
+              </p>
+              <p className="flex items-center gap-1">
+                {" "}
+                <FaHospitalUser />
+                <strong> Vendor:</strong> {product.vendorName}
+              </p>
+              <div className="card-actions ">
+                <Link to={`/productDetails/${product._id}`}>
+                  <button className="px-7 py-1 rounded-full border-yellow-500 border hover:bg-yellow-400">
+                    Details
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
-        )}
+        ))}
+      </div>
+
+      {products.length === 0 && (
+        <div className=" my-20 flex justify-center items-center text-center ">
+          <div>
+            <img className="" src={Nodata} alt="" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

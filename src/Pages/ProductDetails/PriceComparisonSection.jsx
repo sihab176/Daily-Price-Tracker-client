@@ -40,9 +40,12 @@ const PriceComparisonSection = ({ productId, price, setRechartDate }) => {
           onChange={(e) => setSelectedDate(e.target.value)}
           value={selectedDate}
         >
-          <option value="data">set previous date</option>
-          {price?.map((p) => (
-            <option value={p.date}> {p.date}</option>
+          <option value="">set previous date</option>
+          {price?.map((p, index) => (
+            <option key={index} value={p.date}>
+              {" "}
+              {p.date}
+            </option>
           ))}
         </select>
       </div>

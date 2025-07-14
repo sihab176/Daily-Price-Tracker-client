@@ -25,15 +25,19 @@ const ProductCard = ({ product }) => {
             className="w-full h-40 object-contain "
           />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">{product?.marketName}</h2>
-          <p>📅 {product?.date}</p>
+        <div className=" px-4 py-3">
+          <h2 className="card-title text-[20px] mb-1">{product?.marketName}</h2>
+          <p>
+            <strong className="text-gray-500">Date :</strong> {product?.date}
+          </p>
           <p className="text-base">
-            {product?.itemName.trim()} — ৳
+            <strong className="text-gray-500">Item Name :</strong>{" "}
+            {product?.itemName.trim()} <br />
+            <strong className="text-gray-500">Price :</strong> ৳
             {todayPrice ? todayPrice.price : product?.pricePerUnit}/kg
           </p>
-          <div onClick={handleViewDetails} className="card-actions ">
-            <button className="px-7 py-2 rounded-full bg-yellow-500">
+          <div onClick={handleViewDetails} className="card-actions mt-2">
+            <button  className="px-7 py-1 rounded-full bg-yellow-400 hover:bg-yellow-500 cursor-pointer">
               Buy Now
             </button>
           </div>

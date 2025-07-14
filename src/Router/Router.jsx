@@ -11,6 +11,7 @@ import MyAdvertisements from "../Pages/vendor/MyAdvertisements/MyAdvertisements"
 import ProductCard from "../component/ProductSection/ProductCard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import AllProducts from "../Pages/AllProduct/AllProduct";
+import ViewPriceTrends from "../Pages/UserDashboard/ViewPriceTrends/ViewPriceTrends";
 
 export const router = createBrowserRouter([
   {
@@ -37,10 +38,13 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     Component: DashboardLayout,
     children: [
+      // vendor route ==========>
       { path: "addProduct", Component: AddProduct },
       { path: "myProducts", Component: MyProducts },
       { path: "addAdvertisement", Component: AddAdvertisement },
       { path: "myAdvertisements", Component: MyAdvertisements },
+      // users route ===========>
+      { path: "viewPriceTrends", Component: ViewPriceTrends },
     ],
   },
 ]);

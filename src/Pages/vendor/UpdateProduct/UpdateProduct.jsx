@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useFieldArray, useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const UpdateProduct = ({ selectedProduct, closeModal }) => {
   console.log("selectedProduct========>", selectedProduct);
@@ -196,6 +196,7 @@ const UpdateProduct = ({ selectedProduct, closeModal }) => {
           </div>
         </div>
       </dialog>
+      <ToastContainer />
     </div>
   );
 };

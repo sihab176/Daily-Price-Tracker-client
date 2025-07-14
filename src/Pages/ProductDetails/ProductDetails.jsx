@@ -23,7 +23,7 @@ const ProductDetails = () => {
   const { user } = useAuth();
 
   const [rechartDate, setRechartDate] = useState(null);
-
+  // console.log(rechartDate);
   // todo: ✅ Fetch product data by ID =============>
   const { data: product, isLoading } = useQuery({
     queryKey: ["product-details", id],
@@ -33,7 +33,7 @@ const ProductDetails = () => {
     },
   });
 
-  console.log(rechartDate);
+  console.log(product);
 
   // console.log(product);
   // !✅ Add to Watchlist ==========================>
@@ -47,6 +47,8 @@ const ProductDetails = () => {
         market: product.marketName,
         date: product.date,
         image: product.image,
+        prices: product?.prices,
+        vendorName: product?.vendorName,
       });
       toast.success("Added to watchlist!");
       console.log(res);
@@ -74,8 +76,8 @@ const ProductDetails = () => {
   if (isLoading) return <p>Loading...</p>;
   if (!product) return <p>Product not found.</p>;
 
-  const isVendorOrAdmin =
-    user?.email === product.vendorEmail || user?.role === "admin";
+  // const isVendorOrAdmin =
+  //   user?.email === product.vendorEmail || user?.role === "admin";
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 ">
       <h2 className="text-2xl font-bold mb-4">{product.itemName}</h2>
@@ -101,11 +103,11 @@ const ProductDetails = () => {
             <strong>💰 Price:</strong> ৳{product.pricePerUnit} per unit
           </p>
 
-          {/* ✅ Watchlist & Buy Buttons */}
+          {/* ✅ Watchlist & Buy Buttons ====================> */}
           <div className="mt-4 flex gap-4">
             <button
               className="btn btn-sm bg-pink-400"
-              disabled={isVendorOrAdmin}
+              // disabled={isVendorOrAdmin}
               onClick={handleWatchlist}
             >
               ⭐ Add to Watchlist
@@ -116,7 +118,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      {/*  comparison section */}
+      {/*  comparison section ==================> */}
       <div>
         <PriceComparisonSection
           productId={id}
@@ -125,8 +127,7 @@ const ProductDetails = () => {
         />
       </div>
 
-      {/* ✅ Price History Chart */}
-
+      {/* ✅ Price History Chart ===============>*/}
       <section className="mt-10">
         <h3 className="text-lg font-bold mb-2">📊 Price Trend Comparison</h3>
 
@@ -136,7 +137,7 @@ const ProductDetails = () => {
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="price" fill="#10b981" />
+              <Bar dataKey="price" fill="#10b981" barSize={120} />
             </BarChart>
           </ResponsiveContainer>
         ) : (
