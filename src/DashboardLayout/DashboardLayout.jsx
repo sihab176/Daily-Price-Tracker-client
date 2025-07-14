@@ -10,7 +10,7 @@ import {
   FaUserClock,
 } from "react-icons/fa";
 import { RiEBike2Line, RiEBikeFill, RiLineChartLine } from "react-icons/ri";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
 import { FaPlusSquare, FaBullhorn, FaChartBar } from "react-icons/fa";
 import TracLogo from "../Shared/TracLogo/TracLogo";
 import Footer from "../component/Footer/Footer";
@@ -84,6 +84,12 @@ const DashboardLayout = () => {
                   <NavLink to="/dashboard/viewPriceTrends">
                     <RiLineChartLine className="inline-block mr-2" />
                     ViewPriceTrends
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/manageWatchList">
+                    <MdManageHistory className="inline-block mr-2" />
+                    Manage WatchList
                   </NavLink>
                 </li>
               </>

@@ -12,6 +12,7 @@ import ProductCard from "../component/ProductSection/ProductCard";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import AllProducts from "../Pages/AllProduct/AllProduct";
 import ViewPriceTrends from "../Pages/UserDashboard/ViewPriceTrends/ViewPriceTrends";
+import ManageWatchlist from "../Pages/UserDashboard/ManageWatchlist/ManageWatchlist";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,7 @@ export const router = createBrowserRouter([
       { path: "myAdvertisements", Component: MyAdvertisements },
       // users route ===========>
       { path: "viewPriceTrends", Component: ViewPriceTrends },
+      { path: "manageWatchList", Component: ManageWatchlist },
     ],
   },
 ]);
