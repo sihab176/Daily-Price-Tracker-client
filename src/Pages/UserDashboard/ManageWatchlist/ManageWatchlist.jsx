@@ -13,7 +13,7 @@ const ManageWatchlist = () => {
   const { user } = useAuth();
 
   // ✅ Get my products
-  const { data: products = [], isLoading } = useQuery({
+  const { data: products = [] } = useQuery({
     queryKey: ["my-products", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/watchlist?email=${user?.email}`);

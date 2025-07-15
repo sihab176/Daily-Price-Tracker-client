@@ -46,6 +46,14 @@ const AllProducts = () => {
     fetchProducts();
   }, [sortOrder, selectedDate, axiosSecure]);
 
+  const handleDetailsPage = (id) => {
+    if (!user?.email) {
+      navigate("/login");
+    } else {
+      navigate(`/productDetails/${id}`);
+    }
+  };
+
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">🛍️ All Products</h2>
@@ -104,7 +112,7 @@ const AllProducts = () => {
               <h3 className="text-lg font-bold mb-1">{product.itemName}</h3>
               <p className="flex items-center gap-1">
                 <IoPricetagsOutline />
-                <strong>Price:</strong> ৳{product.pricePerUnit}/kg
+                <strong>Price:</strong> ৳ {product.pricePerUnit}/kg
               </p>
               <p className="flex items-center gap-1">
                 <CiCalendarDate />
@@ -120,11 +128,12 @@ const AllProducts = () => {
                 <strong> Vendor:</strong> {product.vendorName}
               </p>
               <div className="card-actions ">
-                <Link to={`/productDetails/${product._id}`}>
-                  <button className="px-7 py-1 rounded-full border-yellow-500 border hover:bg-yellow-400">
-                    Details
-                  </button>
-                </Link>
+                <button
+                  onClick={() => handleDetailsPage(product._id)}
+                  className="px-7 py-1 rounded-full border-yellow-500 border hover:bg-yellow-400"
+                >
+                  Details
+                </button>
               </div>
             </div>
           </div>

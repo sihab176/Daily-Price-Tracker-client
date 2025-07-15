@@ -13,6 +13,7 @@ import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import AllProducts from "../Pages/AllProduct/AllProduct";
 import ViewPriceTrends from "../Pages/UserDashboard/ViewPriceTrends/ViewPriceTrends";
 import ManageWatchlist from "../Pages/UserDashboard/ManageWatchlist/ManageWatchlist";
+import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,8 @@ export const router = createBrowserRouter([
       // users route ===========>
       { path: "viewPriceTrends", Component: ViewPriceTrends },
       { path: "manageWatchList", Component: ManageWatchlist },
+      // admin route  ===========>
+      { path: "admin/allUsers", Component: AllUsers },
     ],
   },
 ]);

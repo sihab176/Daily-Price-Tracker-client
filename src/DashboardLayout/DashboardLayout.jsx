@@ -8,6 +8,7 @@ import {
   FaUserEdit,
   FaSearchLocation,
   FaUserClock,
+  FaUsers,
 } from "react-icons/fa";
 import { RiEBike2Line, RiEBikeFill, RiLineChartLine } from "react-icons/ri";
 import { MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
@@ -76,7 +77,6 @@ const DashboardLayout = () => {
                 Home
               </Link>
             </li>
-
             {/* users */}
             {role && (
               <>
@@ -94,9 +94,7 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
-
             {/* vendor deliveries */}
-
             {role && (
               <>
                 <li>
@@ -125,18 +123,17 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
-
-            {/* admin
-            // {role && (
-            //   <>
-            //     <li>
-            //       <NavLink to="/dashboard/assignRider">
-            //         <RiEBikeFill className="inline-block mr-2" />
-            //         Assign Rider
-            //       </NavLink>
-            //     </li>
-            //   </>
-            // )} */}
+            {/* admin //{" "} */}
+            {role && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/admin/allUsers">
+                    <FaUsers className="inline-block mr-2" />
+                    All Users
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

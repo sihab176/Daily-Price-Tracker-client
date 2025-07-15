@@ -29,7 +29,7 @@ const PriceComparisonSection = ({ productId, price, setRechartDate }) => {
   }, [selectedDate, productId, axiosSecure]);
 
   return (
-    <div className="mt-10 p-4 rounded-md border bg-white shadow">
+    <div className="mt-10 p-4 rounded-md border bg-base-200 shadow">
       <h3 className="font-bold mb-3 text-lg text-primary">
         📊 Compare with Previous Data
       </h3>

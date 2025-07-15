@@ -25,17 +25,17 @@ const AddProduct = () => {
     name: "prices",
   });
 
-
   const onSubmit = async (data) => {
     // console.log(data);
     const productData = {
       ...data,
+      pricePerUnit: Number(data.pricePerUnit),
       date: date.toISOString().slice(0, 10),
       status: "pending",
       vendorEmail: user?.email,
       vendorName: user?.displayName,
     };
-
+    console.log("data", productData);
     try {
       const res = await axiosInstance.post("/products", productData);
       if (res.data.insertedId) {
