@@ -1,12 +1,10 @@
-import { useQuery,  useQueryClient } from "@tanstack/react-query";
-
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-
 import { Link } from "react-router";
-import LoadingComponent from "../../../component/Loading/LoadingComponent";
 import { useEffect, useState } from "react";
+import LoadingComponent from "../../../component/Loading/LoadingComponent";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();

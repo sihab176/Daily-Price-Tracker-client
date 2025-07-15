@@ -14,6 +14,8 @@ import AllProducts from "../Pages/AllProduct/AllProduct";
 import ViewPriceTrends from "../Pages/UserDashboard/ViewPriceTrends/ViewPriceTrends";
 import ManageWatchlist from "../Pages/UserDashboard/ManageWatchlist/ManageWatchlist";
 import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
+import AllProductsAdmin from "../Pages/Admin/AllProducstAdmin/AllProductsAdmin";
+import AllAdvertisement from "../Pages/Admin/AllAdvertisement/AllAdvertisement";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +52,8 @@ export const router = createBrowserRouter([
       { path: "manageWatchList", Component: ManageWatchlist },
       // admin route  ===========>
       { path: "admin/allUsers", Component: AllUsers },
+      { path: "admin/allProducts", Component: AllProductsAdmin },
+      {path: "admin/allAdvertisement",Component: AllAdvertisement}
     ],
   },
 ]);

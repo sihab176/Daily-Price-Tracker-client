@@ -9,6 +9,8 @@ import {
   FaSearchLocation,
   FaUserClock,
   FaUsers,
+  FaCreativeCommons,
+  FaClipboardList,
 } from "react-icons/fa";
 import { RiEBike2Line, RiEBikeFill, RiLineChartLine } from "react-icons/ri";
 import { MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
@@ -130,6 +132,18 @@ const DashboardLayout = () => {
                   <NavLink to="/dashboard/admin/allUsers">
                     <FaUsers className="inline-block mr-2" />
                     All Users
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/admin/allProducts">
+                    <FaClipboardList className="mr-3 text-lg" />
+                    Manage All Products
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/admin/allAdvertisement">
+                    <FaCreativeCommons className="inline-block mr-2" />
+                    All Advertisement
                   </NavLink>
                 </li>
               </>

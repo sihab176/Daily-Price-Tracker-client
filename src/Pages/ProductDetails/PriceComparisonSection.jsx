@@ -29,14 +29,14 @@ const PriceComparisonSection = ({ productId, price, setRechartDate }) => {
   }, [selectedDate, productId, axiosSecure]);
 
   return (
-    <div className="mt-10 p-4 rounded-md border bg-base-200 shadow">
+    <div className="mt-10 p-4 rounded-md border border-primary bg-base-200 shadow">
       <h3 className="font-bold mb-3 text-lg text-primary">
         📊 Compare with Previous Data
       </h3>
 
       <div className="flex flex-col sm:flex-row items-center gap-3">
         <select
-          className="select select-bordered"
+          className="select select-bordered input-success"
           onChange={(e) => setSelectedDate(e.target.value)}
           value={selectedDate}
         >

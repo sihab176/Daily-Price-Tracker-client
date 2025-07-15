@@ -65,11 +65,11 @@ const ReviewSection = ({ productId, user }) => {
                 <strong>{rev.userName}</strong>
                 <span className="text-sm text-gray-500 ml-2">{rev.date}</span>
               </p>
-              {/* <p className="text-yellow-500">⭐ {rev.rating}/5</p> */}
+              
               <Rating
                 emptySymbol={<FaRegStar className="mx-1 cursor-pointer" />}
                 fullSymbol={
-                  <FaStar className="mx-1 cursor-pointer text-yellow-400" />
+                  <FaStar  className="mx-1 cursor-pointer text-yellow-400 " />
                 }
                 fractions={1}
                 initialRating={rev.rating}
