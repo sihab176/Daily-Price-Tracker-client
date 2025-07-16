@@ -60,13 +60,13 @@ const ViewPriceTrends = () => {
 
       {/* Trend Graph Section */}
       <div className="col-span-3">
-        {selectedItem && (
+        {
           <div>
             <h3 className="text-xl font-bold mb-2">
-              {selectedItem.productName}
+              {selectedItem?.productName}
             </h3>
-            <p>🏪 {selectedItem.market}</p>
-            <p>👨‍🌾 Vendor: {selectedItem.vendorName}</p>
+            <p>🏪 {selectedItem?.market}</p>
+            <p>👨‍🌾 Vendor: {selectedItem?.vendorName}</p>
 
             {selectedItem ? (
               <ResponsiveContainer width="100%" height={300}>
@@ -97,7 +97,7 @@ const ViewPriceTrends = () => {
               </p>
             )} */}
           </div>
-        )}
+        }
       </div>
     </div>
   );

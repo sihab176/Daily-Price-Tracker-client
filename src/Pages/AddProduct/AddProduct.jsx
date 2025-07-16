@@ -49,7 +49,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto  shadow-xl p-6 rounded-xl">
+    <div className="max-w-4xl mx-auto  shadow-xl p-6 rounded-xl mb-20">
       <h2 className="text-2xl font-bold mb-4">📝 Add Product</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Read-only fields */}
@@ -159,7 +159,7 @@ const AddProduct = () => {
         ></textarea>
 
         {/* Submit */}
-        <button type="submit" className="btn bg-primary w-full">
+        <button type="submit" className="btn bg-green-700 w-full">
           Submit Product
         </button>
       </form>

@@ -7,7 +7,7 @@ const TracLogo = () => {
     <div className="flex items-center">
       
         <img
-          className="h-15 w-16 md:block hidden"
+          className="h-15 w-16 md:block "
           src="https://i.ibb.co/FbfP4ZmB/logo-2-removebg-preview.png"
           alt=""
         />

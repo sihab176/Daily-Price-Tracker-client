@@ -4,7 +4,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const Banner = () => {
   return (
-    <section className="bg-green-100 md:px-20 py-10">
+    <section className="bg-green-100 md:px-20 py-10 bg-gradient-to-t from-white/60 to-transparent bg-cover ">
       <div className="flex items-center justify-between lg:flex-row flex-col-reverse">
         <div className="space-y-7 text-black md:text-start text-center">
           <p className="text-sm">🥦 Know Today’s Market Price Before You Shop!</p>
