@@ -16,6 +16,7 @@ import ManageWatchlist from "../Pages/UserDashboard/ManageWatchlist/ManageWatchl
 import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
 import AllProductsAdmin from "../Pages/Admin/AllProducstAdmin/AllProductsAdmin";
 import AllAdvertisement from "../Pages/Admin/AllAdvertisement/AllAdvertisement";
+import DynamicUsers from "../Pages/DynamicUsers/DynamicUsers";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,7 @@ export const router = createBrowserRouter([
     Component: DashboardLayout,
     children: [
       // vendor route ==========>
+      { index: true, Component: DynamicUsers },
       { path: "addProduct", Component: AddProduct },
       { path: "myProducts", Component: MyProducts },
       { path: "addAdvertisement", Component: AddAdvertisement },
@@ -53,7 +55,7 @@ export const router = createBrowserRouter([
       // admin route  ===========>
       { path: "admin/allUsers", Component: AllUsers },
       { path: "admin/allProducts", Component: AllProductsAdmin },
-      {path: "admin/allAdvertisement",Component: AllAdvertisement}
+      { path: "admin/allAdvertisement", Component: AllAdvertisement },
     ],
   },
 ]);

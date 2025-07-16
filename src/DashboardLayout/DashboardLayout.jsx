@@ -73,25 +73,62 @@ const DashboardLayout = () => {
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
             {/* Sidebar content here */}
             <TracLogo></TracLogo>
-            <li>
-              <Link to="/dashboard">
+            {/* <li>
+              <NavLink to="/dashboard">
                 <FaHome className="inline-block mr-2" />
                 Home
-              </Link>
+              </NavLink>
+            </li> */}
+            <li className="mb-4">
+              <NavLink
+                to="/dashboard"
+                end
+                className={({ isActive }) =>
+                  `flex items-center p-2 rounded-lg transition-colors ${
+                    isActive
+                      ? "bg-blue-100 text-blue-600 border-l-4 border-blue-500 hover:bg-blue-200"
+                      : "hover:bg-gray-100 text-gray-700"
+                  }`
+                }
+              >
+                <FaHome className="mr-3" />
+                <span>Home</span>
+              </NavLink>
             </li>
+
             {/* users */}
             {role && (
               <>
-                <li>
-                  <NavLink to="/dashboard/viewPriceTrends">
-                    <RiLineChartLine className="inline-block mr-2" />
-                    ViewPriceTrends
+                <li className="mb-4">
+                  <NavLink
+                    to="/dashboard/viewPriceTrends"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg transition-colors ${
+                        isActive
+                          ? "bg-blue-100 text-blue-600 border-l-4 border-blue-500 hover:bg-blue-200"
+                          : "hover:bg-gray-100 text-gray-700"
+                      }`
+                    }
+                  >
+                    <FaHome className="mr-3" />
+                    <span>ViewPriceTrends</span>
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/dashboard/manageWatchList">
+                <li className="mb-4">
+                  <NavLink
+                    to="/dashboard/manageWatchList"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg transition-colors ${
+                        isActive
+                          ? "bg-blue-100 text-blue-600 border-l-4 border-blue-500 hover:bg-blue-200"
+                          : "hover:bg-gray-100 text-gray-700"
+                      }`
+                    }
+                  >
                     <MdManageHistory className="inline-block mr-2" />
-                    Manage WatchList
+                    <span>Manage WatchList</span>
                   </NavLink>
                 </li>
               </>
