@@ -11,7 +11,7 @@ const ProductSection = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["approved-products"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/products?status=pending&limit=6");
+      const res = await axiosInstance.get("/products?status=approved&limit=6");
       return res.data;
     },
   });

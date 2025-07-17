@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   LineChart,
@@ -9,28 +9,39 @@ import {
   ResponsiveContainer,
   BarChart,
 } from "recharts";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAuth from "../../../hooks/useAuth";
+
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../../hooks/useAxios";
 
 const ViewPriceTrends = () => {
-  const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
-  const [watchlist, setWatchlist] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [trendData, setTrendData] = useState([]);
-  const [trendChange, setTrendChange] = useState(null);
+
+  const axiosInstance = useAxios();
 
   //! use Effect =============================>
-  useEffect(() => {
-    // Fetch user watchlist
-    const fetchWatchlist = async () => {
-      const res = await axiosSecure.get(`/watchlist?email=${user?.email}`);
-      setWatchlist(res.data);
-    };
-    fetchWatchlist();
-  }, [user?.email, axiosSecure]);
 
-  console.log("watchlist", watchlist);
+  // useEffect(() => {
+  //   // Fetch user watchlist
+  //   const fetchWatchlist = async () => {
+  //     const res = await axiosSecure.get(`/watchlist?email=${user?.email}`);
+  //     setWatchlist(res.data);
+  //   };
+  //   fetchWatchlist();
+  // }, [user?.email, axiosSecure]);
+
+  // test
+
+  const { data: watchlist = [] } = useQuery({
+    queryKey: ["advertisement-admin"],
+    queryFn: async () => {
+      const res = await axiosInstance.get("/allProducts?status=approved");
+      return res.data;
+      // setWatchlist(res.data);
+    },
+  });
+
+  // console.log(advertisement);
+
   // ! handle ================================>
   const handleItemClick = async (item) => {
     console.log(item, "item");
@@ -43,16 +54,19 @@ const ViewPriceTrends = () => {
       {/* Tracked Items Sidebar */}
       <div className="col-span-1">
         <h3 className="text-lg font-bold mb-2">🧅 Tracked Items</h3>
-        <ul className="space-y-2">
-          {watchlist.map((item, i) => (
+        <ul className="space-y-2 md:block md:flex-row flex flex-wrap">
+          {watchlist?.map((item, i) => (
             <li
               key={i}
-              className={`cursor-pointer py-1 px-4 text-center rounded-md border border-purple-700 hover:bg-teal-600 ${
-                selectedItem?.productId === item.productId ? "bg-teal-500" : ""
+              className={`cursor-pointer py-1 px-4 text-center rounded-md border border-purple-700 flex items-center hover:bg-teal-600 ${
+                selectedItem?._id === item?._id ? "bg-teal-500" : ""
               }`}
               onClick={() => handleItemClick(item)}
             >
-              {item.productName}
+              <div className="w-8 h-8 md:m-1">
+                <img src={item?.image} alt="" />
+              </div>{" "}
+              {item?.itemName}
             </li>
           ))}
         </ul>
@@ -65,7 +79,7 @@ const ViewPriceTrends = () => {
             <h3 className="text-xl font-bold mb-2">
               {selectedItem?.productName}
             </h3>
-            <p>🏪 {selectedItem?.market}</p>
+            <p>🏪 {selectedItem?.marketName}</p>
             <p>👨‍🌾 Vendor: {selectedItem?.vendorName}</p>
 
             {selectedItem ? (

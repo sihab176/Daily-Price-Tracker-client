@@ -1,39 +1,56 @@
 import React from "react";
 import Offer from "../../assets/offer-removebg-preview.png";
 import Boom from "../../assets/boom-2-removebg-preview.png";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../../hooks/useAxios";
+import offer from "../../assets/offer-2-removebg-preview.png";
 
 const HighlightAdd = () => {
+  const axiosInstance = useAxios();
+
+  const { data: advertisement = [] } = useQuery({
+    queryKey: ["advertisement-admin"],
+    queryFn: async () => {
+      const res = await axiosInstance.get(
+        "/advertisements/all?status=approved"
+      );
+      return res.data;
+    },
+  });
+
   return (
     <div>
-      {/* test =============> */}
-      <div className="bg-red-100">
-        <div className="flex justify-between">
-          <div className="flex-1">
-            <div className="flex items-center md:flex-row flex-col">
-              <img className="max-w-[200px]" src={Offer} alt="" />
-              <h1 className="text-4xl font-bold text-green-700">
-                20 % Discount Lorem ipsum, dolor sit
-              </h1>
-            </div>
-            <p className="pb-6 pl-4">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam
-              .
-            </p>
-          </div>
-          <div
-            className="bg-cover bg-center w-full flex justify-center flex-1 "
-            style={{ backgroundImage: `url(${Boom})` }}
-          >
-            <div className="pt-18 ">
+      <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
+        {advertisement?.map((add) => (
+          <div className="bg-gradient-to-r from-lime-200 via-green-300 to-white rounded-xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+            {/* Fruit Image */}
+            <div className="flex-shrink-0 w-48 md:w-56 lg:w-64">
               <img
-                className="max-w-[200px] "
-                src="https://i.ibb.co/jvf8cDKv/veg-1-removebg-preview.png"
-                alt=""
+                src={add.image} // replace with your basket image
+                alt="Fruit Basket"
+                className="w-48 md:w-56 lg:w-64"
               />
             </div>
+            <div className="w-[360px]">
+              <img src={offer} alt="" />
+            </div>
+            {/* Text Content */}
+            <div className="text-center md:text-left">
+              <h3 className="text-lg md:text-xl font-medium text-gray-700 text-center">
+                Celebrate with pride <br /> and enjoy a
+              </h3>
+              <div className="text-5xl md:text-6xl font-bold text-black mt-2 mb-1">
+                10<span className="text-black text-5xl align-top">%</span>
+              </div>
+              <p className="text-lg text-green-800">
+                Discount on your first order
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
+        ))}
+      </Carousel>
     </div>
   );
 };

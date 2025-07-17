@@ -15,7 +15,7 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { RiEBike2Line, RiEBikeFill, RiLineChartLine } from "react-icons/ri";
-import { MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
+import { MdAddBusiness, MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
 import { FaPlusSquare, FaBullhorn, FaChartBar } from "react-icons/fa";
 import TracLogo from "../Shared/TracLogo/TracLogo";
 import Footer from "../component/Footer/Footer";
@@ -58,11 +58,11 @@ const DashboardLayout = () => {
                 </svg>
               </label>
             </div>
-            <div className=" flex justify-between items-center  gap-24">
-              <p>
-                <TracLogo></TracLogo>
-              </p>
+            <div className=" flex justify-between items-center    ">
               <div>
+                <TracLogo></TracLogo>
+              </div>
+              <div className="md:ml-[540px]">
                 {user ? (
                   <img
                     className="rounded-full w-9 mr-4 border-3 border-primary"
@@ -238,6 +238,22 @@ const DashboardLayout = () => {
                   >
                     <FaUsers className="inline-block mr-2" />
                     <span>All Users</span>
+                  </NavLink>
+                </li>
+                <li className="mb-4">
+                  <NavLink
+                    to="/dashboard/admin/allAdvertisement"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg transition-colors ${
+                        isActive
+                          ? "bg-blue-100 text-blue-600 border-l-4 border-blue-500 hover:bg-blue-200"
+                          : "hover:bg-gray-100 hover:text-blue-600"
+                      }`
+                    }
+                  >
+                    <MdAddBusiness className="mr-3 text-lg" />
+                    <span>Manage All Advertisement</span>
                   </NavLink>
                 </li>
                 <li className="mb-4">

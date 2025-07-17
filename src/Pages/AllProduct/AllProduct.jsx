@@ -23,7 +23,7 @@ const AllProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        let url = "/allProducts?status=pending";
+        let url = "/allProducts?status=approved";
 
         if (sortOrder) {
           url += `&sort=${sortOrder}`; // 'asc' or 'desc'
