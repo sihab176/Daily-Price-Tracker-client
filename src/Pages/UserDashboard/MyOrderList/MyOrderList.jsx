@@ -1,14 +1,13 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
+
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router";
 
 const MyOrderList = () => {
   const axiosSecure = useAxiosSecure();
-  const queryClient = useQueryClient();
+
   const { user } = useAuth();
 
   // ✅ Get my products
@@ -19,36 +18,6 @@ const MyOrderList = () => {
       return res.data;
     },
   });
-  console.log(myProducts);
-  // ✅ Delete Product Mutation
-  const deleteMutation = useMutation({
-    mutationFn: async (id) => {
-      const res = await axiosSecure.delete(`/watchlist/${id}`);
-      return res.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries(["my-products"]);
-      toast.success("Remove successfully from watch List!");
-    },
-    onError: () => {
-      toast.error("Failed to remove product.");
-    },
-  });
-
-  // ✅ Handle delete with confirmation
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, remove it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteMutation.mutate(id);
-      }
-    });
-  };
 
   return (
     <div className="p-6">

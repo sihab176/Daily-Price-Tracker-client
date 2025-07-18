@@ -97,7 +97,7 @@ const ProductDetails = () => {
             <strong>💰 Price:</strong> ৳{product.pricePerUnit} per unit
           </p>
 
-          {/* ✅ Watchlist & Buy Buttons ====================> */}
+          {/*  Watchlist & Buy Buttons ====================> */}
           <div className="mt-4 flex gap-4">
             <button
               className={`  px-3 py-1 rounded ${
