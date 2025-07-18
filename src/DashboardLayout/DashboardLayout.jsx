@@ -15,17 +15,24 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { RiEBike2Line, RiEBikeFill, RiLineChartLine } from "react-icons/ri";
-import { MdAddBusiness, MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
+import {
+  MdAddBusiness,
+  MdAdminPanelSettings,
+  MdManageHistory,
+} from "react-icons/md";
 import { FaPlusSquare, FaBullhorn, FaChartBar } from "react-icons/fa";
 import TracLogo from "../Shared/TracLogo/TracLogo";
 import Footer from "../component/Footer/Footer";
 import { IoLogOutOutline } from "react-icons/io5";
 import Navbar from "../component/Navbar/Navbar";
 import useAuth from "../hooks/useAuth";
+import useUserRole from "../hooks/useUserRole";
+import { LuShoppingBag } from "react-icons/lu";
 
 const DashboardLayout = () => {
   const { user } = useAuth();
-  const role = true;
+  const { role, roleLoading } = useUserRole();
+  console.log(role);
 
   return (
     <section>
@@ -115,7 +122,7 @@ const DashboardLayout = () => {
             </li>
 
             {/* users */}
-            {role && (
+            {!roleLoading && role === "user" && (
               <>
                 <li className="mb-4">
                   <NavLink
@@ -131,6 +138,22 @@ const DashboardLayout = () => {
                   >
                     <FaChartLine className="mr-3" />
                     <span>ViewPriceTrends</span>
+                  </NavLink>
+                </li>
+                <li className="mb-4">
+                  <NavLink
+                    to="/dashboard/myOrderList"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center p-2 rounded-lg transition-colors ${
+                        isActive
+                          ? "bg-blue-100 text-blue-600 border-l-4 border-blue-500 hover:bg-blue-200"
+                          : "hover:bg-gray-100 hover:text-blue-600"
+                      }`
+                    }
+                  >
+                    <LuShoppingBag className="inline-block mr-2" />
+                    <span>My Order List</span>
                   </NavLink>
                 </li>
                 <li className="mb-4">
@@ -152,7 +175,7 @@ const DashboardLayout = () => {
               </>
             )}
             {/* vendor deliveries */}
-            {role && (
+            {!roleLoading && role === "Vendor" && (
               <>
                 <li className="mb-4">
                   <NavLink
@@ -222,7 +245,7 @@ const DashboardLayout = () => {
               </>
             )}
             {/* admin //{" "} */}
-            {role && (
+            {!roleLoading && role === "Admin" && (
               <>
                 <li className="mb-4">
                   <NavLink

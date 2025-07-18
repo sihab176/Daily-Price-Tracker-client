@@ -48,7 +48,7 @@ const ExtraCardSection = () => {
             </div>
             <h3 className="text-xl font-medium">{fruit.title}</h3>
             <p className="text-gray-500 px-4">{fruit.description}</p>
-            <button className="text-green-700 underline">EXPLORE</button>
+            
           </div>
         ))}
       </div>

@@ -17,6 +17,8 @@ import AllUsers from "../Pages/Admin/AllUsers/AllUsers";
 import AllProductsAdmin from "../Pages/Admin/AllProducstAdmin/AllProductsAdmin";
 import AllAdvertisement from "../Pages/Admin/AllAdvertisement/AllAdvertisement";
 import DynamicUsers from "../Pages/DynamicUsers/DynamicUsers";
+import PrivetRoute from "../Secure/PrivetRoute";
+import MyOrderList from "../Pages/UserDashboard/MyOrderList/MyOrderList";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +43,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    Component: DashboardLayout,
+    element: (
+      <PrivetRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivetRoute>
+    ),
     children: [
       // vendor route ==========>
       { index: true, Component: DynamicUsers },
@@ -52,6 +58,7 @@ export const router = createBrowserRouter([
       // users route ===========>
       { path: "viewPriceTrends", Component: ViewPriceTrends },
       { path: "manageWatchList", Component: ManageWatchlist },
+      { path: "myOrderList", Component: MyOrderList },
       // admin route  ===========>
       { path: "admin/allUsers", Component: AllUsers },
       { path: "admin/allProducts", Component: AllProductsAdmin },

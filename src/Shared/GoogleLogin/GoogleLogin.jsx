@@ -1,10 +1,14 @@
 import React, { use } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxios from "../../hooks/useAxios";
+import { useLocation, useNavigate } from "react-router";
 
 const GoogleLogin = () => {
   const { googleLogin } = use(AuthContext);
   const axiosInstance = useAxios();
+
+  const navigate = useNavigate("/");
+  const location = useLocation();
 
   const handelGoogleLogin = () => {
     googleLogin()
@@ -22,7 +26,7 @@ const GoogleLogin = () => {
 
         console.log(result);
 
-        // navigate(`${location.state ? location.state : "/"}`);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);

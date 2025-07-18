@@ -16,11 +16,14 @@ import { useParams } from "react-router";
 import ReviewSection from "./ReviewSection";
 import PriceComparisonSection from "./PriceComparisonSection";
 import { useState } from "react";
+import Payments from "../Payments/Payments";
+import useUserRole from "../../hooks/useUserRole";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const { role } = useUserRole();
 
   const [rechartDate, setRechartDate] = useState(null);
   // console.log(rechartDate);
@@ -32,8 +35,6 @@ const ProductDetails = () => {
       return res.data;
     },
   });
-
-  console.log(product);
 
   // console.log(product);
   // !✅ Add to Watchlist ==========================>
@@ -60,24 +61,17 @@ const ProductDetails = () => {
 
   // !✅ Go to payment ==============================>
   const handleBuy = async () => {
-    try {
-      const res = await axiosSecure.post("/create-payment", {
-        productId: id,
-        price: parseInt(product.pricePerUnit),
-        userEmail: user.email,
-      });
-      window.location.href = res.data.url;
-    } catch (err) {
-      toast.error("Payment initiation failed.");
-      console.log(err);
-    }
+    document.getElementById("my_modal_1").showModal();
+  };
+  const closeModal = () => {
+    document.getElementById("my_modal_1").close();
   };
 
   if (isLoading) return <p>Loading...</p>;
   if (!product) return <p>Product not found.</p>;
 
-  // const isVendorOrAdmin =
-  //   user?.email === product.vendorEmail || user?.role === "admin";
+  const isVendorOrAdmin = role === "Vendor" || role === "Admin" || !user;
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 ">
       <h2 className="text-2xl font-bold mb-4">{product.itemName}</h2>
@@ -106,17 +100,37 @@ const ProductDetails = () => {
           {/* ✅ Watchlist & Buy Buttons ====================> */}
           <div className="mt-4 flex gap-4">
             <button
-              className="btn btn-sm bg-pink-400"
-              // disabled={isVendorOrAdmin}
+              className={`  px-3 py-1 rounded ${
+                isVendorOrAdmin
+                  ? "cursor-not-allowed  bg-pink-100"
+                  : "cursor-pointer bg-pink-400"
+              }`}
+              disabled={isVendorOrAdmin}
               onClick={handleWatchlist}
             >
               ⭐ Add to Watchlist
             </button>
-            <button className="btn btn-sm btn-primary" onClick={handleBuy}>
+            <button
+              disabled={isVendorOrAdmin}
+              className={`  px-3 py-1 rounded ${
+                isVendorOrAdmin
+                  ? "cursor-not-allowed  bg-teal-100"
+                  : "cursor-pointer bg-primary"
+              }`}
+              onClick={handleBuy}
+            >
               🛒 Buy Product
             </button>
           </div>
         </div>
+      </div>
+      {/* payments */}
+      <div>
+        <Payments
+          closeModal={closeModal}
+          price={product?.pricePerUnit}
+          product={product}
+        ></Payments>
       </div>
       {/*  comparison section ==================> */}
       <div>

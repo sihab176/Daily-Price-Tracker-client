@@ -1,5 +1,4 @@
-// import { useEffect, useState } from "react";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 import BgImage from "../../assets/banner-1.jpg";
 import Marquee from "react-fast-marquee";
 import Mar1 from "../../assets/fr-1-removebg-preview.png";
@@ -10,7 +9,6 @@ import { FaPlusCircle } from "react-icons/fa";
 import { MdFavorite } from "react-icons/md";
 
 const DynamicUsers = () => {
-  //   const axiosSecure = useAxiosSecure();
   //   const [role, setRole] = useState(null);
 
   //   useEffect(() => {
@@ -43,15 +41,11 @@ const DynamicUsers = () => {
 
   return (
     <div className="p-6 text-center">
-      {/* <h2 className="text-2xl font-bold mb-4">
-        👋 Hello, {user?.displayName || "User"}
-      </h2>
-      <p className="text-gray-700 text-lg">{renderDashboardMessage()}</p> */}
       <div
         style={{ backgroundImage: `url(${BgImage})` }}
-        class=" bg-cover bg-no-repeat  h-[300px] "
+        className=" bg-cover bg-no-repeat  h-[300px] "
       >
-        <div class="bg-gradient-to-t from-black/80 to-transparent bg-cover h-[300px] text-white ">
+        <div className="bg-gradient-to-t from-black/80 to-transparent bg-cover h-[300px] text-white ">
           <div className="space-y-3 pt-20">
             <p className="text-sm text-yellow-400">FRUIT FRESH</p>
             <h1 className="text-4xl font-bold">Vegetable 100% Organic</h1>
@@ -65,7 +59,7 @@ const DynamicUsers = () => {
 
       {/* MARQUE SECTION */}
       <div>
-        <Marquee speed={50} gradient={false} >
+        <Marquee speed={50} gradient={false}>
           <div className="flex justify-between gp-24 mt-8 cursor-pointer">
             {/* card-1 */}
             <div className="relative bg-base-200 mr-10  py-6 rounded">

@@ -13,17 +13,15 @@ const Register = () => {
   const [profilePicture, setProfilePicture] = useState("");
   const { createUser, updateUser } = useAuth();
   const axiosInstance = useAxios();
-  const navigate = useNavigate();
+  const navigate = useNavigate("/");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  //! HANDLE SUBMIT =================================>
+  //TOdo ========================HANDLE SUBMIT =================================>
   const onSubmit = (data) => {
-
-
     //! CREATE USER  ------------->
     createUser(data.email, data.password).then(async (res) => {
       console.log(res);
@@ -35,7 +33,7 @@ const Register = () => {
         created_at: new Date().toISOString(),
         last_login: new Date().toISOString(),
       };
-      const result = await axiosInstance.post("/user", userData);
+      const result = await axiosInstance.post("/users", userData);
       console.log("result========>", result);
 
       //! update user ------------->

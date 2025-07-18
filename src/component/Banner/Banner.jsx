@@ -5,9 +5,11 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const Banner = () => {
   return (
     <section className="bg-green-100 md:px-20 py-10 bg-gradient-to-t from-white/60 to-transparent bg-cover ">
-      <div className="flex items-center justify-between lg:flex-row flex-col-reverse py-10">
+      <div className="flex items-center justify-between lg:flex-row flex-col-reverse md:py-16">
         <div className="space-y-7 text-black md:text-start text-center">
-          <p className="text-sm">🥦 Know Today’s Market Price Before You Shop!</p>
+          <p className="text-sm">
+            🥦 Know Today’s Market Price Before You Shop!
+          </p>
           <h1 className="text-5xl font-bold">
             Make healthy life with <br />{" "}
             <span className="text-yellow-500">fresh grocery</span>
@@ -17,7 +19,7 @@ const Banner = () => {
             dolore <br /> nemo blanditiis? Corporis, distinctio voluptate?
             Nesciunt odit natus <br /> obcaecati similique!
           </p>
-          <div className="flex gap-6 items-center">
+          <div className="flex gap-6 items-center md:ml-0 ml-14">
             <button className="px-4 py-2 flex items-center gap-1 rounded-full h-full bg-primary">
               READ MORE <FaArrowRightLong />
             </button>
@@ -27,7 +29,7 @@ const Banner = () => {
           </div>
         </div>
         <div>
-          <img  className="h-[360px] " src={BannerImage} alt="banner" />
+          <img className="h-[360px] " src={BannerImage} alt="banner" />
         </div>
       </div>
     </section>

@@ -192,11 +192,11 @@ const Navbar = () => {
             onClick={handleLogOut}
             className="btn btn-sm bg-teal-600 font-bold lg:block hidden"
           >
-            logOut
+            Sign Out
           </button>
         ) : (
           <Link to="/login">
-            <button className="btn btn-sm bg-primary font-bold">signIn</button>
+            <button className="btn btn-sm bg-primary font-bold">Sign In</button>
           </Link>
         )}
       </div>
