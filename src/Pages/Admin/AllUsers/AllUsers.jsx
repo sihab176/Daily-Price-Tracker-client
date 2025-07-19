@@ -1,22 +1,27 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import LoadingComponent from "../../../component/Loading/LoadingComponent";
+// import useAuth from "../../../hooks/useAuth";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [selectRole, setSelectRole] = useState("");
   const [userId, setUserId] = useState("");
+  const [search, setSearch] = useState(".");
 
   // !✅ Get users  =========================>
   const { data: users = [], isLoading } = useQuery({
     queryKey: ["my-products"],
+
+    enabled: !!search,
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get(`/users?searchParams=${search}`);
+      setSearch("");
       return res.data;
     },
   });
@@ -51,6 +56,15 @@ const AllUsers = () => {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">📦 My Submitted Products</h2>
+      <div>
+        <input
+          type="search"
+          onChange={(e) => setSearch(e.target.value)}
+          name="Search"
+          placeholder="Search..."
+          className="md:w-[550px] py-3 pl-10 px-2 text-sm  border border-sky-600 focus:outline-violet-600"
+        />
+      </div>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead className="bg-base-200">
