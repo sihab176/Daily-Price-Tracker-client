@@ -13,7 +13,7 @@ const TracLogo = () => {
         />
      
       <h1 className="text-2xl font-semibold">
-        Track<span className="text-orange-600">Kacha</span>
+        Local<span className="text-orange-600">Harvest</span>
       </h1>
     </div>
    </Link>

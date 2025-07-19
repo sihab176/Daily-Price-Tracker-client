@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import { inView, motion } from "framer-motion";
 
-const ProductCard = ({ product }) => {
+// product card ============================================>
+const ProductCard = ({ product, index }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   // console.log(product);
@@ -17,7 +19,18 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="w-11/12 mx-auto">
-      <div className="card bg-base-200 w-[360px] shadow-sm">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ delay: index * 0.2, duration: 0.5, ease: "easeOut" }}
+        whileHover={{
+          scale: 1.03,
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+          transition: { duration: 0.3, ease: "easeInOut" }, // smoother hover
+        }}
+        className="card bg-base-200 w-[360px] shadow-sm"
+      >
         <figure className="bg-[#c4bc7b59] py-9">
           <img
             src={product?.image}
@@ -37,12 +50,17 @@ const ProductCard = ({ product }) => {
             {todayPrice ? todayPrice.price : product?.pricePerUnit}/kg
           </p>
           <div onClick={handleViewDetails} className="card-actions mt-2">
-            <button  className="px-7 py-1 rounded-full bg-yellow-400 hover:bg-yellow-500 cursor-pointer">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="px-7 py-1 rounded-full bg-yellow-400 hover:bg-yellow-500 cursor-pointer"
+            >
               Buy Now
-            </button>
+            </motion.button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -54,8 +54,8 @@ const AllAdvertisement = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">📦 My Submitted Products</h2>
-      <div className="overflow-x-auto">
+      <h2 className="text-2xl font-bold mb-4"> Manage ALL Advertisements</h2>
+      <div className="overflow-x-auto h-screen">
         <table className="table w-full">
           <thead className="bg-base-200">
             <tr>

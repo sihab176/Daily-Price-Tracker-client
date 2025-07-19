@@ -12,18 +12,20 @@ import {
 } from "recharts";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import ReviewSection from "./ReviewSection";
 import PriceComparisonSection from "./PriceComparisonSection";
 import { useState } from "react";
 import Payments from "../Payments/Payments";
 import useUserRole from "../../hooks/useUserRole";
+import { motion } from "framer-motion";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { role } = useUserRole();
+  const navigate = useNavigate("");
 
   const [rechartDate, setRechartDate] = useState(null);
   // console.log(rechartDate);
@@ -52,7 +54,7 @@ const ProductDetails = () => {
         vendorName: product?.vendorName,
       });
       toast.success("Added to watchlist!");
-      console.log(res);
+      navigate("/dashboard/manageWatchList");
     } catch (err) {
       toast.error("Failed to add to watchlist.");
       console.log(err);
@@ -77,12 +79,25 @@ const ProductDetails = () => {
       <h2 className="text-2xl font-bold mb-4">{product.itemName}</h2>
 
       <div className="grid md:grid-cols-2 gap-6 ">
-        <img
+        <motion.img
+          className="rounded-xl shadow bg-base-200"
+          animate={{ y: [0, -10, 0] }}
+          transition={{
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 4,
+            ease: "easeInOut",
+          }}
           src={product.image}
           alt="product"
-          className="rounded-xl shadow bg-base-200"
         />
-        <div className="space-y-6 mt-20">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+          className="space-y-6 mt-20"
+        >
           <p>
             <strong>🏪 Market:</strong> {product.marketName}
           </p>
@@ -100,7 +115,7 @@ const ProductDetails = () => {
           {/*  Watchlist & Buy Buttons ====================> */}
           <div className="mt-4 flex gap-4">
             <button
-              className={`  px-3 py-1 rounded ${
+              className={`  px-3 py-1 rounded text-black ${
                 isVendorOrAdmin
                   ? "cursor-not-allowed  bg-pink-100"
                   : "cursor-pointer bg-pink-400"
@@ -112,7 +127,7 @@ const ProductDetails = () => {
             </button>
             <button
               disabled={isVendorOrAdmin}
-              className={`  px-3 py-1 rounded ${
+              className={`  px-3 py-1 rounded text-black ${
                 isVendorOrAdmin
                   ? "cursor-not-allowed  bg-teal-100"
                   : "cursor-pointer bg-primary"
@@ -122,7 +137,7 @@ const ProductDetails = () => {
               🛒 Buy Product
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
       {/* payments */}
       <div>

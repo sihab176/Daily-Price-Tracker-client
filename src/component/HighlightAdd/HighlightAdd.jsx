@@ -19,6 +19,7 @@ const HighlightAdd = () => {
       return res.data;
     },
   });
+  console.log(advertisement);
 
   return (
     <div>
@@ -37,16 +38,15 @@ const HighlightAdd = () => {
               <img src={offer} alt="" />
             </div>
             {/* Text Content */}
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-left max-w-[360px]">
               <h3 className="text-lg md:text-xl font-medium text-gray-700 text-center">
-                Celebrate with pride <br /> and enjoy a
+                {add.title}
               </h3>
-              <div className="text-5xl md:text-6xl font-bold text-black mt-2 mb-1">
+              {/* <div className="text-5xl md:text-6xl font-bold text-black mt-2 mb-1">
                 10<span className="text-black text-5xl align-top">%</span>
-              </div>
-              <p className="text-lg text-green-800">
-                Discount on your first order
-              </p>
+
+              </div> */}
+              <p className="text-lg text-green-800">{add.description}</p>
             </div>
           </div>
         ))}

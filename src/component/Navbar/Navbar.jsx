@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import { FaUser } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { AuthContext } from "../../Provider/AuthProvider";
+
 import "./nav.css";
 
 // TODO : ========================================= NAVBAR =========================================>
@@ -48,7 +49,7 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-200 shadow-sm sticky z-10 top-0">
       <div className="navbar-start">
-        {/* <div className="dropdown bg-red-800">
+        <div className="dropdown ">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,30 +69,14 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow "
+            className="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-4 shadow "
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {links}
           </ul>
-        </div> */}
+        </div>
         {/* drawer ================= */}
-        <div className="relative">
-          {/* Toggle Button */}
+        {/* <div className="relative">
+          
           <button
             className="p-2  text-white bg-base-200 rounded lg:hidden"
             onClick={toggleDrawer}
@@ -99,7 +84,7 @@ const Navbar = () => {
             <FiMenu className="text-green-700 text-4xl" />
           </button>
 
-          {/* Overlay */}
+         
           {isOpen && (
             <div
               className="fixed inset-0  bg-opacity-80 z-40 lg:hidden  "
@@ -107,7 +92,6 @@ const Navbar = () => {
             ></div>
           )}
 
-          {/* Drawer */}
           <div
             className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50 lg:hidden ${
               isOpen ? "translate-x-0" : "-translate-x-full"
@@ -132,7 +116,7 @@ const Navbar = () => {
 
             <ul className="p-4 space-y-2">{links}</ul>
           </div>
-        </div>
+        </div> */}
         {/* logo================== */}
         <div className="flex items-center">
           <Link>
@@ -143,7 +127,7 @@ const Navbar = () => {
             />
           </Link>
           <h1 className="text-2xl font-semibold">
-            Track<span className="text-orange-600">Kacha</span>
+            Local<span className="text-orange-600">Harvest</span>
           </h1>
         </div>
       </div>

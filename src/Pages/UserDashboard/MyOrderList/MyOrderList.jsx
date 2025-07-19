@@ -41,7 +41,7 @@ const MyOrderList = () => {
                 <td>{product.amount}</td>
 
                 <td>{product.marketName}</td>
-                <td>{product.paid_at.split("T")[0]}</td>
+                <td>{product?.paid_at?.split("T")[0]}</td>
 
                 <td className="flex gap-2 justify-center">
                   {/* modal=========> */}

@@ -36,7 +36,7 @@ const DashboardLayout = () => {
 
   return (
     <section>
-      <div className="lg:block hidden">
+      <div className="lg:block hidden sticky z-10 top-0">
         <Navbar />
       </div>
       <div className="drawer lg:drawer-open">
@@ -69,7 +69,7 @@ const DashboardLayout = () => {
               <div>
                 <TracLogo></TracLogo>
               </div>
-              <div className="md:ml-[540px]">
+              <div className="md:ml-[540px] ml-[100px]">
                 {user ? (
                   <img
                     className="rounded-full w-9 mr-4 border-3 border-primary"
@@ -83,17 +83,7 @@ const DashboardLayout = () => {
                 )}
               </div>
             </div>
-            <div className="hidden flex-none lg:block">
-              {/* <ul className="menu menu-horizontal">
-                
-                <li>
-                  <a>Navbar Item 1</a>
-                </li>
-                <li>
-                  <a>Navbar Item 2</a>
-                </li>
-              </ul> */}
-            </div>
+            <div className="hidden flex-none lg:block"></div>
           </div>
           <Outlet />
         </div>
@@ -104,6 +94,9 @@ const DashboardLayout = () => {
             className="drawer-overlay"
           ></label>
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative">
+            <div className="lg:hidden">
+              <TracLogo></TracLogo>
+            </div>
             <li className="mb-4">
               <NavLink
                 to="/dashboard"

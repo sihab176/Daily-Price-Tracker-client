@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
   };
   //logOut user
   const logOutUser = () => {
+    localStorage.removeItem("access-token");
     setLoader(true);
     return signOut(auth);
   };
@@ -51,9 +52,33 @@ const AuthProvider = ({ children }) => {
 
   //save user
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       setLoader(false);
+      if (currentUser) {
+        // Get Firebase token
+
+        // Send to backend to get your custom JWT
+        try {
+          const res = await fetch("http://localhost:3000/jwt", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: currentUser.email }),
+          });
+
+          const data = await res.json();
+
+          // Save JWT in localStorage
+          localStorage.setItem("access-token", data.token);
+        } catch (error) {
+          console.error("JWT Error:", error);
+        }
+      } else {
+        // Clear JWT on logout
+        localStorage.removeItem("access-token");
+      }
     });
     return () => {
       unsubscribe();

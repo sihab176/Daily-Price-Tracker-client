@@ -1,22 +1,23 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { toast } from "react-toastify";
 import { useState } from "react";
-
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import UpdateProduct from "../../vendor/UpdateProduct/UpdateProduct";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import UpdateByAdmin from "../UpdateByAdmin/UpdateByAdmin";
 
 const AllProductsAdmin = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [rejectModal, setRejectModal] = useState(null);
-  const [deleteModal, setDeleteModal] = useState(null);
+  // const [deleteModal, setDeleteModal] = useState(null);
   const [feedback, setFeedback] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState({});
   //! ============================ GET ALL PRODUCT DATA ==========================>
-  const { data: products = [] } = useQuery({
+  const { data: products = [] ,refetch } = useQuery({
     queryKey: ["all-products-admin"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin/allProduct");
@@ -56,7 +57,7 @@ const AllProductsAdmin = () => {
     onSuccess: () => {
       toast.success("Product deleted.");
       queryClient.invalidateQueries(["all-products-admin"]);
-      setDeleteModal(null);
+      // setDeleteModal(null);
     },
   });
   //! =============================== HANDLE DELETE ==============================>
@@ -74,6 +75,20 @@ const AllProductsAdmin = () => {
     });
   };
 
+  // ! open Modal ======>
+  const openModal = (product) => {
+    console.log({ product });
+    setSelectedProduct({ ...product });
+    document.getElementById("my_modal_4").showModal();
+  };
+  // ! close Modal ====>
+  const closeModal = () => {
+    setSelectedProduct({});
+    refetch();
+    document.getElementById("my_modal_4").close();
+  };
+ 
+
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-6">🛍️ All Products (Admin)</h2>
@@ -83,8 +98,8 @@ const AllProductsAdmin = () => {
           <thead>
             <tr>
               <th>Item</th>
-              <th className="md:inline hidden">Market</th>
-              <th className="md:inline hidden">Date</th>
+              <th className="">Market</th>
+              <th className="">Date</th>
               <th>Status</th>
               <th>Vendor</th>
               <th>Actions</th>
@@ -94,8 +109,8 @@ const AllProductsAdmin = () => {
             {products.map((p) => (
               <tr key={p._id}>
                 <td>{p.itemName}</td>
-                <td className="md:inline hidden">{p.marketName}</td>
-                <td className="md:inline hidden">{p.date}</td>
+                <td className="">{p.marketName}</td>
+                <td className="">{p.date}</td>
                 <td
                   className={`
                   ${p.status === "pending" ? "text-yellow-500" : ""}
@@ -126,9 +141,7 @@ const AllProductsAdmin = () => {
                   )}
                   <button
                     className="btn btn-xs btn-info"
-                    onClick={() =>
-                      navigate(`/dashboard/update-product/${p._id}`)
-                    }
+                    onClick={() => openModal(p)}
                   >
                     Update
                   </button>
@@ -178,6 +191,12 @@ const AllProductsAdmin = () => {
           </div>
         </div>
       )}
+      <div>
+        <UpdateByAdmin
+          selectedProduct={{ ...selectedProduct }}
+          closeModal={closeModal}
+        />
+      </div>
     </div>
   );
 };

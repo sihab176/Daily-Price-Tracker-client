@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import DatePicker from "react-datepicker";
 import { toast, ToastContainer } from "react-toastify";
 
-const UpdateProduct = ({ selectedProduct, closeModal }) => {
+const UpdateByAdmin = ({ selectedProduct, closeModal }) => {
   console.log("selectedProduct========>", selectedProduct);
   const { _id } = selectedProduct || {};
 
@@ -42,12 +42,25 @@ const UpdateProduct = ({ selectedProduct, closeModal }) => {
     };
     closeModal();
 
-    console.log("post data ", productData);
+    Swal.fire({
+      icon: "success",
+      title: "You successfully updated",
+      showConfirmButton: false,
+      timer: 1500,
+    });
 
     try {
       const res = await axiosSecure.put(`/vendors/${_id}`, productData);
-      if (res.data.insertedId) {
-        toast.success("Product updated  successfully!");
+
+      console.log(res);
+      if (res) {
+        // Swal.fire({
+        //   position: "top-end",
+        //   icon: "success",
+        //   title: "You successfully updated",
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        // });
       }
     } catch (err) {
       console.error(err);
@@ -67,16 +80,16 @@ const UpdateProduct = ({ selectedProduct, closeModal }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="email"
-                  value={user?.email}
-                  
+                  // value={user?.email}
+                  {...register("vendorEmail")}
                   readOnly
                   className="input input-bordered w-full"
                   placeholder="Vendor Email"
                 />
                 <input
                   type="text"
-                  value={user?.displayName}
-                  
+                  // value={user?.displayName}
+                  {...register("vendorName")}
                   readOnly
                   className="input input-bordered w-full"
                   placeholder="Vendor Name"
@@ -203,4 +216,4 @@ const UpdateProduct = ({ selectedProduct, closeModal }) => {
   );
 };
 
-export default UpdateProduct;
+export default UpdateByAdmin;

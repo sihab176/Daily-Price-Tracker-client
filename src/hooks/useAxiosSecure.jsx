@@ -9,34 +9,42 @@ const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
-  const { user ,logOutUser} = useAuth();
+  const { logOutUser } = useAuth();
+
+  // ✅ Add token to request
   axiosSecure.interceptors.request.use(
     (config) => {
-      config.headers.Authorization = `Bearer ${user?.accessToken}`;
+      const token = localStorage.getItem("access-token");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
       return config;
     },
-    (error) => {
-      return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
   );
-  axiosSecure.interceptors.response.use((res) => {
-    return res;
-  } ,(error) => {
+
+  axiosSecure.interceptors.response.use(
+    (res) => {
+      return res;
+    },
+    (error) => {
       // console.log("inside res interceptor ", error.status);
       const status = error.status;
       if (status === 403) {
         navigate("/forbidden");
-      }else if( status ===401){
-          logOutUser()
-          .then(()=>{
-            navigate('/login')
-          }).catch(error=>{
-            console.log(error);
+      } else if (status === 401) {
+        logOutUser()
+          .then(() => {
+            navigate("/login");
           })
+          .catch((error) => {
+            console.log(error);
+          });
       }
       return Promise.reject(error);
-    })
-   
+    }
+  );
+
   return axiosSecure;
 };
 

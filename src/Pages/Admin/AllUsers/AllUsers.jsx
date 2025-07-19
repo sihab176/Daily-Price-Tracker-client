@@ -31,7 +31,14 @@ const AllUsers = () => {
 
         queryClient.invalidateQueries(["my-products"]);
         if (res.data) {
-          return toast.success("you successfully update the Role");
+          console.log(res.data, "success fully");
+          // toast.success("you successfully update the Role");
+          Swal.fire({
+            icon: "success",
+            title: `You successfully the of ${selectRole}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       };
       upDateUserRole();

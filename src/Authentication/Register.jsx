@@ -8,6 +8,7 @@ import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxios from "../hooks/useAxios";
+import TracLogo from "../Shared/TracLogo/TracLogo";
 
 const Register = () => {
   const [profilePicture, setProfilePicture] = useState("");
@@ -71,6 +72,9 @@ const Register = () => {
     <section className="flex justify-center md:w-11/12 md:mx-auto md:flex-row flex-col items-center">
       <div className="flex-1 ">
         <div className="bg-white lg:ml-10">
+          <div className="ml-8">
+            <TracLogo></TracLogo>
+          </div>
           <div>
             <h1 className="  text-4xl">Create an Account</h1>
           </div>

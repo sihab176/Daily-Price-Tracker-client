@@ -5,10 +5,12 @@ import Footer from "../../Footer/Footer";
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className="">
       <Navbar />
       <Outlet />
-      <Footer />
+      <div className="">
+        <Footer />
+      </div>
     </div>
   );
 };
