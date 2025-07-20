@@ -14,7 +14,7 @@ const HighlightAdd = () => {
     queryKey: ["advertisement-admin"],
     queryFn: async () => {
       const res = await axiosInstance.get(
-        "/advertisements/all?status=approved"
+        "/advertisements/allProduct?status=approved"
       );
       return res.data;
     },

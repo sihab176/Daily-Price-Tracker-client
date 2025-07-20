@@ -34,11 +34,12 @@ const ViewPriceTrends = () => {
   const { data: watchlist = [] } = useQuery({
     queryKey: ["advertisement-admin"],
     queryFn: async () => {
-      const res = await axiosInstance.get("/allProducts?status=approved");
+      const res = await axiosInstance.get("/allTrendPrice?status=approved");
       return res.data;
       // setWatchlist(res.data);
     },
   });
+  console.log(watchlist);
 
   // console.log(advertisement);
 
@@ -55,20 +56,22 @@ const ViewPriceTrends = () => {
       <div className="col-span-1">
         <h3 className="text-lg font-bold mb-2">🧅 Tracked Items</h3>
         <ul className="space-y-2 md:block md:flex-row flex flex-wrap">
-          {watchlist?.map((item, i) => (
-            <li
-              key={i}
-              className={`cursor-pointer py-1 px-4 text-center rounded-md border border-purple-700 flex items-center hover:bg-teal-600 ${
-                selectedItem?._id === item?._id ? "bg-teal-500" : ""
-              }`}
-              onClick={() => handleItemClick(item)}
-            >
-              <div className="w-8 h-8 md:m-1">
-                <img src={item?.image} alt="" />
-              </div>{" "}
-              {item?.itemName}
-            </li>
-          ))}
+          {watchlist
+            ? watchlist?.map((item, i) => (
+                <li
+                  key={i}
+                  className={`cursor-pointer py-1 px-4 text-center rounded-md border border-purple-700 flex items-center hover:bg-teal-600 ${
+                    selectedItem?._id === item?._id ? "bg-teal-500" : ""
+                  }`}
+                  onClick={() => handleItemClick(item)}
+                >
+                  <div className="w-8 h-8 md:m-1">
+                    <img src={item?.image} alt="" />
+                  </div>{" "}
+                  {item?.itemName}
+                </li>
+              ))
+            : "there is no data"}
         </ul>
       </div>
 

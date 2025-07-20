@@ -19,6 +19,9 @@ import AllAdvertisement from "../Pages/Admin/AllAdvertisement/AllAdvertisement";
 import DynamicUsers from "../Pages/DynamicUsers/DynamicUsers";
 import PrivetRoute from "../Secure/PrivetRoute";
 import MyOrderList from "../Pages/UserDashboard/MyOrderList/MyOrderList";
+import Error from "../Pages/Error/Error";
+import Forbidden from "../Pages/Forbidden/Forbidden";
+import AdminRoute from "../Secure/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -60,9 +63,32 @@ export const router = createBrowserRouter([
       { path: "manageWatchList", Component: ManageWatchlist },
       { path: "myOrderList", Component: MyOrderList },
       // admin route  ===========>
-      { path: "admin/allUsers", Component: AllUsers },
-      { path: "admin/allProducts", Component: AllProductsAdmin },
-      { path: "admin/allAdvertisement", Component: AllAdvertisement },
+      {
+        path: "admin/allUsers",
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/allProducts",
+        element: (
+          <AdminRoute>
+            <AllProductsAdmin></AllProductsAdmin>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/allAdvertisement",
+        element: (
+          <AdminRoute>
+            <AllAdvertisement></AllAdvertisement>
+          </AdminRoute>
+        ),
+      },
     ],
   },
+  { path: "forbidden", Component: Forbidden },
+  { path: "*", Component: Error },
 ]);
