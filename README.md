@@ -4,31 +4,36 @@
 
 ## Live Demo
 
-[Book Bridge](https://assignment12-local-market.netlify.app/)
+[Local Harvest](https://assignment12-local-market.netlify.app/)
 
 ---
 
 ## 🚀 Features
 
 - **Authentication & Authorization**
+
   - Secure login and registration with Firebase Authentication
   - Protected routes and role-based access (Admin, Vendor, User)
 
 - **Role-Based Dashboards**
+
   - **Admin:** Manage all users, products, and advertisements
   - **Vendor:** Add, update, and manage own products and ads
   - **User:** Browse products, track price trends, manage watchlist, and place orders
 
 - **Product Management**
+
   - Add new products with detailed info and images
   - Update product price history
   - Approve/reject products (Admin)
 
 - **Price History & Trends**
+
   - Visualize price changes over time for each product
   - Compare prices across different markets
 
 - **Watchlist & Orders**
+
   - Add products to a personal watchlist
   - Place and manage orders
 
@@ -93,3 +98,4 @@ cd src
 npm install
 # Add your Firebase config to .env
 npm run dev
+```
