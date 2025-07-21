@@ -39,7 +39,7 @@ const AddAdvertisement = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-5 bg-white shadow-lg p-6 rounded-xl"
+        className="space-y-5 bg-base-200 shadow-lg p-6 rounded-xl"
       >
         {/* Ad Title */}
         <div>

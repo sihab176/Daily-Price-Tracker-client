@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, NavLink, Outlet } from "react-router";
 
 import {
@@ -30,9 +30,12 @@ import useUserRole from "../hooks/useUserRole";
 import { LuShoppingBag } from "react-icons/lu";
 
 const DashboardLayout = () => {
+  useEffect(() => {
+    document.title = "LocalHarvest | Dashboard";
+  }, []);
+
   const { user } = useAuth();
   const { role, roleLoading } = useUserRole();
-  console.log(role);
 
   return (
     <section>

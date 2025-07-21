@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../../component/Banner/Banner";
 import ProductSection from "../../component/ProductSection/ProductSection";
 
@@ -7,8 +7,11 @@ import ExtraCardSection from "../../component/ExtarCardSection/ExtraCardSection"
 import MarketSection from "../../component/MarketSection/MarketSection";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "LocalHarvest | Home";
+  }, []);
   return (
-    <div>
+    <div className=" max-w-7xl mx-auto">
       <Banner />
       <ProductSection />
       <HighlightAdd />

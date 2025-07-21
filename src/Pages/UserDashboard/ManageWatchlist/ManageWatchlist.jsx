@@ -16,7 +16,9 @@ const ManageWatchlist = () => {
   const { data: products = [] } = useQuery({
     queryKey: ["my-products", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/watchlist?email=${user?.email}`);
+      const res = await axiosSecure.get(
+        `/watchList/manage?email=${user?.email}`
+      );
       return res.data;
     },
   });
@@ -50,7 +52,7 @@ const ManageWatchlist = () => {
       }
     });
   };
-
+  console.log(products, "watchlist");
   //   if (isLoading) return <LoadingComponent></LoadingComponent>;
 
   return (

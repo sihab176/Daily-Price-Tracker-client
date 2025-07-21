@@ -153,7 +153,6 @@
 
 // export default AllProducts;
 
-
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -166,6 +165,10 @@ import { FaHospitalUser } from "react-icons/fa";
 import { IoPricetagsOutline } from "react-icons/io5";
 
 const AllProducts = () => {
+  useEffect(() => {
+    document.title = "LocalHarvest | All Products";
+  }, []);
+
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -173,7 +176,7 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
-  
+
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6); // 6 items per page
@@ -266,7 +269,10 @@ const AllProducts = () => {
       {/* Products List */}
       <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
-          <div key={product._id} className="card bg-base-200 w-[360px] shadow-sm">
+          <div
+            key={product._id}
+            className="card bg-base-200 w-[360px] shadow-sm"
+          >
             <figure className={`bg-sky-100 py-9`}>
               <img
                 src={product?.image}
@@ -325,18 +331,22 @@ const AllProducts = () => {
             >
               «
             </button>
-            
+
             {/* Page Numbers */}
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-              <button
-                key={number}
-                onClick={() => paginate(number)}
-                className={`join-item btn ${currentPage === number ? 'btn-active' : ''}`}
-              >
-                {number}
-              </button>
-            ))}
-            
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+              (number) => (
+                <button
+                  key={number}
+                  onClick={() => paginate(number)}
+                  className={`join-item btn ${
+                    currentPage === number ? "btn-active" : ""
+                  }`}
+                >
+                  {number}
+                </button>
+              )
+            )}
+
             {/* Next Button */}
             <button
               className="join-item btn"

@@ -19,6 +19,7 @@ import { useState } from "react";
 import Payments from "../Payments/Payments";
 import useUserRole from "../../hooks/useUserRole";
 import { motion } from "framer-motion";
+import LoadingComponent from "../../component/Loading/LoadingComponent";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -38,11 +39,10 @@ const ProductDetails = () => {
     },
   });
 
-  // console.log(product);
   // !✅ Add to Watchlist ==========================>
   const handleWatchlist = async () => {
     try {
-      const res = await axiosSecure.post("/watchlist", {
+      const res = await axiosSecure.post("/watchList", {
         productId: id,
         userEmail: user?.email,
         userName: user?.displayName,
@@ -69,7 +69,7 @@ const ProductDetails = () => {
     document.getElementById("my_modal_1").close();
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingComponent />;
   if (!product) return <p>Product not found.</p>;
 
   const isVendorOrAdmin = role === "Vendor" || role === "Admin" || !user;

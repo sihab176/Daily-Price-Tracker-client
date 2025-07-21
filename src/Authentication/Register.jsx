@@ -46,7 +46,7 @@ const Register = () => {
         navigate("/");
         Swal.fire({
           icon: "success",
-          title: "welcome to BookBridge ",
+          title: "welcome to Local Harvest ",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -71,7 +71,7 @@ const Register = () => {
   return (
     <section className="flex justify-center md:w-11/12 md:mx-auto md:flex-row flex-col items-center">
       <div className="flex-1 ">
-        <div className="bg-white lg:ml-10">
+        <div className=" lg:ml-10">
           <div className="ml-8">
             <TracLogo></TracLogo>
           </div>

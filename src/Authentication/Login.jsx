@@ -13,8 +13,8 @@ const Login = () => {
   const { loginUser } = use(AuthContext);
   //   console.log(loginUser);
 
-    const navigate = useNavigate("/");
-    const location = useLocation();
+  const navigate = useNavigate("/");
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -27,10 +27,10 @@ const Login = () => {
       loginUser(data.email, data.password)
         .then((res) => {
           console.log(res.user);
-          navigate(`${location.state ? location.state : "/"}`)
+          navigate(`${location.state ? location.state : "/"}`);
           Swal.fire({
             icon: "success",
-            title: "welcome to BookBridge ",
+            title: "welcome to Local Harvest ",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -44,7 +44,7 @@ const Login = () => {
 
   return (
     <section className="flex justify-center md:w-11/12 md:mx-auto md:flex-row flex-col items-center">
-      <div className="bg-white flex-1 lg:ml-10 mb-4">
+      <div className=" flex-1 lg:ml-10 mb-4">
         <div className="ml-8">
           <TracLogo></TracLogo>
         </div>

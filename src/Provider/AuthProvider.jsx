@@ -60,13 +60,16 @@ const AuthProvider = ({ children }) => {
 
         // Send to backend to get your custom JWT
         try {
-          const res = await fetch("http://localhost:3000/jwt", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email: currentUser.email }),
-          });
+          const res = await fetch(
+            "https://assignment-12-server-side-pied.vercel.app/jwt",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email: currentUser.email }),
+            }
+          );
 
           const data = await res.json();
 

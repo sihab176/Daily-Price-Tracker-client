@@ -14,7 +14,8 @@ const MyProducts = () => {
   const queryClient = useQueryClient();
   const { user } = useAuth();
   const [selectedProduct, setSelectedProduct] = useState({});
-  // console.log("setSelectedProduct", selectedProduct);
+  const [feedBack, setFeedBack] = useState(null);
+  console.log(feedBack);
 
   // ✅ Get my products
   const {
@@ -72,76 +73,223 @@ const MyProducts = () => {
   };
   if (isLoading) return <LoadingComponent></LoadingComponent>;
 
+  const handleFedback = (feedback) => {
+    setFeedBack(feedback);
+    document.getElementById("my_modal_1").showModal();
+  };
+
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">📦 My Submitted Products</h2>
-      <div className="overflow-x-auto">
-        <table className="table w-full">
-          <thead className="bg-base-200">
-            <tr>
-              <th>Item</th>
-              <th>Price/Unit</th>
-              <th>Market</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th className="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product.itemName}</td>
-                <td>৳{product.pricePerUnit}</td>
-                <td>{product.marketName}</td>
-                <td>{product.date}</td>
-                <td>
-                  <span
-                    className={`badge ${
-                      product.status === "approved"
-                        ? "badge-success"
-                        : product.status === "pending"
-                        ? "badge-warning"
-                        : "badge-error"
-                    }`}
-                  >
-                    {product.status}
-                  </span>
-                  {product.status === "rejected" && product.feedback && (
-                    <p className="text-sm text-red-500 italic">
-                      ⛔ {product.feedback}
-                    </p>
-                  )}
-                </td>
-                <td className="flex gap-2 justify-center">
-                  {/* modal=========> */}
-                  <div onClick={() => openModal(product)}>
-                    <button className="btn btn-xs btn-outline">upDate</button>
-                  </div>
-                  {/* delete button ======> */}
-                  <button
-                    onClick={() => handleDelete(product._id)}
-                    className="btn btn-xs btn-error text-white"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {products.length === 0 && (
+    <>
+      <div className="p-6 md:block hidden">
+        <h2 className="text-2xl font-bold mb-4">📦 My Submitted Products</h2>
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            <thead className="bg-base-200">
               <tr>
-                <td colSpan={6} className="text-center py-10 text-gray-400">
-                  No products found.
-                </td>
+                <th>Item</th>
+                <th>Price/Unit</th>
+                <th>Market</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th className="text-center">Actions</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-        <UpdateProduct
-          selectedProduct={{ ...selectedProduct }}
-          closeModal={closeModal}
-        />
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product.itemName}</td>
+                  <td>৳{product.pricePerUnit}</td>
+                  <td>{product.marketName}</td>
+                  <td>{product.date}</td>
+                  <td>
+                    <span
+                      className={`badge ${
+                        product.status === "approved"
+                          ? "badge-success"
+                          : product.status === "pending"
+                          ? "badge-warning"
+                          : "badge-error"
+                      }`}
+                    >
+                      {product.status}
+                    </span>
+
+                    {product.status === "rejected" && product.feedback && (
+                      <p className="text-sm text-red-500 italic">
+                        ⛔ {product.feedback}
+                      </p>
+                    )}
+                    {/* rejected */}
+                    {product.status === "rejected" && (
+                      <button
+                        onClick={() =>
+                          handleFedback(product?.rejectionFeedback?.feedback)
+                        }
+                        className="btn btn-xs bg-red-400 ml-2"
+                      >
+                        View
+                      </button>
+                    )}
+                    {/* =================modal================ */}
+                  </td>
+                  <td className="flex gap-2 justify-center">
+                    {/* modal=========> */}
+                    <div onClick={() => openModal(product)}>
+                      <button className="btn btn-xs btn-outline">upDate</button>
+                    </div>
+                    {/* delete button ======> */}
+                    <div className="flex flex-col ">
+                      <button
+                        onClick={() => handleDelete(product._id)}
+                        className="btn btn-xs btn-error text-white px-1 py-1"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {products.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="text-center py-10 text-gray-400">
+                    No products found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <UpdateProduct
+            selectedProduct={{ ...selectedProduct }}
+            closeModal={closeModal}
+          />
+        </div>
+        {/* ================ fedback modal ===================== */}
+        <div>
+          <dialog id="my_modal_1" className="modal">
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">rejection Feedback</h3>
+              {feedBack && <p className="py-4"> {feedBack}</p>}
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button
+                    onClick={() => setFeedBack(null)}
+                    className="btn  bg-red-300"
+                  >
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
       </div>
-    </div>
+      {/*  responsive  */}
+      <div className="p-6 md:hidden  block h-screen">
+        <h2 className="text-2xl font-bold mb-4">📦 My Submitted Products</h2>
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            <thead className="bg-base-200">
+              <tr>
+                <th>Item</th>
+                {/* <th>Price/Unit</th> */}
+                {/* <th>Market</th> */}
+                {/* <th>Date</th> */}
+                <th>Status</th>
+                <th className="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td>{product.itemName}</td>
+                  {/* <td>৳{product.pricePerUnit}</td> */}
+                  {/* <td>{product.marketName}</td> */}
+                  {/* <td>{product.date}</td> */}
+                  <td>
+                    <span
+                      className={`badge ${
+                        product.status === "approved"
+                          ? "badge-success"
+                          : product.status === "pending"
+                          ? "badge-warning"
+                          : "badge-error"
+                      }`}
+                    >
+                      {product.status}
+                    </span>
+
+                    {product.status === "rejected" && product.feedback && (
+                      <p className="text-sm text-red-500 italic">
+                        ⛔ {product.feedback}
+                      </p>
+                    )}
+                    {/* rejected */}
+                    {product.status === "rejected" && (
+                      <button
+                        onClick={() =>
+                          handleFedback(product?.rejectionFeedback?.feedback)
+                        }
+                        className="btn btn-xs bg-red-400 ml-2"
+                      >
+                        View
+                      </button>
+                    )}
+                    {/* =================modal================ */}
+                  </td>
+                  <td className="flex gap-2 justify-center">
+                    {/* modal=========> */}
+                    <div onClick={() => openModal(product)}>
+                      <button className="btn btn-xs btn-outline">upDate</button>
+                    </div>
+                    {/* delete button ======> */}
+                    <div className="flex flex-col ">
+                      <button
+                        onClick={() => handleDelete(product._id)}
+                        className="btn btn-xs btn-error text-white px-1 py-1"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {products.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="text-center py-10 text-gray-400">
+                    No products found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <UpdateProduct
+            selectedProduct={{ ...selectedProduct }}
+            closeModal={closeModal}
+          />
+        </div>
+        {/* ================ fedback modal ===================== */}
+        <div>
+          <dialog id="my_modal_1" className="modal">
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">rejection Feedback</h3>
+              {feedBack && <p className="py-4"> {feedBack}</p>}
+              <div className="modal-action">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button
+                    onClick={() => setFeedBack(null)}
+                    className="btn  bg-red-300"
+                  >
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+      </div>
+    </>
   );
 };
 

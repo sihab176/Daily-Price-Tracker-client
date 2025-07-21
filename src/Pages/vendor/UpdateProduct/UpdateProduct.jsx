@@ -7,7 +7,7 @@ import DatePicker from "react-datepicker";
 import { toast, ToastContainer } from "react-toastify";
 
 const UpdateProduct = ({ selectedProduct, closeModal }) => {
-  console.log("selectedProduct========>", selectedProduct);
+  // console.log("selectedProduct========>", selectedProduct);
   const { _id } = selectedProduct || {};
 
   const { register, handleSubmit, control, reset } = useForm();

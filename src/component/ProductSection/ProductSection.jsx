@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import ProductCard from "./ProductCard";
 import useAxios from "../../hooks/useAxios";
+import LoadingComponent from "../Loading/LoadingComponent";
 
 const ProductSection = () => {
   //   const axiosSecure = useAxiosSecure();
@@ -15,7 +16,7 @@ const ProductSection = () => {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingComponent />;
 
   return (
     <section className="px-4 py-10">
