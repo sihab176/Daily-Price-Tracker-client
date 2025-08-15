@@ -25,7 +25,7 @@ const HighlightAdd = () => {
     <div>
       <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
         {advertisement?.map((add) => (
-          <div className="bg-gradient-to-r from-lime-200 via-green-300 to-white rounded-xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+          <div className="bg-gradient-to-r from-[#68d8d6] via-[#9ceaef] to-white rounded-xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
             {/* Fruit Image */}
             <div className="flex-shrink-0 w-48 md:w-56 lg:w-64">
               <img

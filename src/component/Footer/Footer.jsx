@@ -4,7 +4,7 @@ import TracLogo from "../../Shared/TracLogo/TracLogo";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer footer-horizontal footer-center bg-primary text-primary-content p-10">
+      <footer className="footer footer-horizontal footer-center bg-teal-600 text-primary-content p-10">
         <aside>
           <TracLogo></TracLogo>
           <p className="font-bold">

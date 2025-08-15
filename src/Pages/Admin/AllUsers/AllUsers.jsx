@@ -76,7 +76,7 @@ const AllUsers = () => {
   };
 
   if (isLoading) return <LoadingComponent></LoadingComponent>;
-  // https://assignment-12-server-side-pied.vercel.app
+  // http://localhost:3000
   return (
     <>
       <div className="p-6 md:block hidden">

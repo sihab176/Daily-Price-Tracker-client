@@ -6,7 +6,7 @@ const Banner = () => {
   const line1 = "Make healthy life with";
   const line2 = "fresh grocery";
   return (
-    <section className="bg-green-100 md:px-20 py-10 bg-gradient-to-t from-white/60 to-transparent bg-cover ">
+    <section className="bg-[#cbf3f0] md:px-20 py-10 bg-gradient-to-t from-white/80 to-transparent bg-cover ">
       <div className="flex items-center justify-between lg:flex-row flex-col-reverse md:py-16">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -17,11 +17,6 @@ const Banner = () => {
           <p className="text-sm">
             🥦 Know Today’s Market Price Before You Shop!
           </p>
-          {/* <h1 className="text-5xl font-bold">
-            Make healthy life with <br />{" "}
-            <span className="text-yellow-500">fresh grocery</span>
-          </h1> */}
-
           {/* First Line */}
           <h1 className="text-5xl font-bold flex justify-center flex-wrap">
             {Array.from(line1).map((char, index) => (

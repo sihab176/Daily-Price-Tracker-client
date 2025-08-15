@@ -5,7 +5,7 @@ import { FiMenu } from "react-icons/fi";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 import "./nav.css";
-
+//!  https://assignment-12-server-side-pied.vercel.app
 // TODO : ========================================= NAVBAR =========================================>
 const Navbar = () => {
   const { user, logOutUser } = use(AuthContext);
@@ -47,7 +47,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-200 shadow-sm sticky z-10 top-0">
+    <div className="navbar bg-base-200 shadow-sm ">
       <div className="navbar-start">
         <div className="dropdown ">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

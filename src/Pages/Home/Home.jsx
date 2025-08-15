@@ -11,7 +11,7 @@ const Home = () => {
     document.title = "LocalHarvest | Home";
   }, []);
   return (
-    <div className=" max-w-7xl mx-auto">
+    <div className="">
       <Banner />
       <ProductSection />
       <HighlightAdd />

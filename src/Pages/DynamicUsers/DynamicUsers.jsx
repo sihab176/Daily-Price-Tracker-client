@@ -60,9 +60,9 @@ const DynamicUsers = () => {
       {/* MARQUE SECTION */}
       <div>
         <Marquee speed={50} gradient={false}>
-          <div className="flex justify-between gp-24 mt-8 cursor-pointer">
+          <div className="flex justify-between gp-24 my-8 cursor-pointer">
             {/* card-1 */}
-            <div className="relative bg-base-200 mr-10  py-6 rounded">
+            <div className="relative bg-base-200 mr-10  py-6 rounded shadow-2xl">
               <p className="text-4xl absolute top-5 right-2">
                 <MdFavorite className="text-red-600" size={26} />
               </p>
@@ -84,7 +84,7 @@ const DynamicUsers = () => {
               </p>
             </div>
             {/* card-2 */}
-            <div className="relative bg-base-200 mr-10  py-6 rounded">
+            <div className="relative bg-base-200 mr-10  py-6 rounded shadow-2xl">
               <p className="text-4xl absolute top-5 right-2">
                 <MdFavorite className="text-red-600" size={26} />
               </p>
@@ -106,7 +106,7 @@ const DynamicUsers = () => {
               </p>
             </div>
             {/* card-3 */}
-            <div className="relative bg-base-200 mr-10  py-6 rounded">
+            <div className="relative bg-base-200 mr-10  py-6 rounded shadow-2xl">
               <p className="text-4xl absolute top-5 right-2">
                 <MdFavorite className="text-red-600" size={26} />
               </p>
@@ -128,7 +128,7 @@ const DynamicUsers = () => {
               </p>
             </div>
             {/* card-4 */}
-            <div className="relative bg-base-200 mr-10  py-6 rounded">
+            <div className="relative bg-base-200 mr-10  py-6 rounded shadow-2xl">
               <p className="text-4xl absolute top-5 right-2">
                 <MdFavorite className="text-red-600" size={26} />
               </p>

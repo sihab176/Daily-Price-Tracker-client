@@ -8,22 +8,22 @@ const ExtraCardSection = () => {
   const fruits = [
     {
       title: "Citrus Fruits",
-      color: "bg-yellow-100",
-      image: `${pic1}`, // replace with your citrus image
+      color: "bg-[#99c2a2]",
+      image: `${pic1}`,
       description:
         "Amet facilisis magna etiam tempor orci eu lobortis elementum.",
     },
     {
       title: "Pits Fruits",
-      color: "bg-green-900",
-      image: `${pic2}`, // replace with your pits fruit image
+      color: "bg-[#f4bbd3]",
+      image: `${pic2}`,
       description:
         "Amet facilisis magna etiam tempor orci eu lobortis elementum.",
     },
     {
       title: "Berries",
-      color: "bg-red-800",
-      image: `${pic3}`, // replace with your berries image
+      color: "bg-[#b8e0d2]",
+      image: `${pic3}`,
       description:
         "Amet facilisis magna etiam tempor orci eu lobortis elementum.",
     },
