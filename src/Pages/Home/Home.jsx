@@ -5,6 +5,7 @@ import ProductSection from "../../component/ProductSection/ProductSection";
 import HighlightAdd from "../../component/HighlightAdd/HighlightAdd";
 import ExtraCardSection from "../../component/ExtarCardSection/ExtraCardSection";
 import MarketSection from "../../component/MarketSection/MarketSection";
+import LimitedOffer from "../../component/LimitedOffer/LimitedOffer";
 
 const Home = () => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const Home = () => {
       <HighlightAdd />
       <ExtraCardSection />
       <MarketSection />
+      <LimitedOffer />
     </div>
   );
 };
