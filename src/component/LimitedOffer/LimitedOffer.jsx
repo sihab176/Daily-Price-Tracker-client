@@ -39,42 +39,6 @@ const LimitedOffer = () => {
   }, [targetDate]);
 
   return (
-    // <section
-    //   style={{ backgroundImage: `url(${BgImage})` }}
-    //   className="w-full h-[300px] bg-no-repeat bg-cover bg-center bg-fixed "
-    // >
-    //     <h1 className="text-2xl text-center">We offer a hot deal offer every festival</h1>
-    //  <div className="flex items-center justify-center">
-    //      <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
-        
-    //     <div className="flex flex-col p-2 bg-[#006d77] rounded-box text-neutral-content">
-    //       <span className="countdown font-mono text-5xl">
-    //         <span style={{ "--value": timeLeft.days }}>{timeLeft.days}</span>
-    //       </span>
-    //       days
-    //     </div>
-    //     <div className="flex flex-col p-2 bg-[#006d77] rounded-box text-neutral-content">
-    //       <span className="countdown font-mono text-5xl">
-    //         <span style={{ "--value": timeLeft.hours }}>{timeLeft.hours}</span>
-    //       </span>
-    //       hours
-    //     </div>
-    //     <div className="flex flex-col p-2 bg-[#006d77] rounded-box text-neutral-content">
-    //       <span className="countdown font-mono text-5xl">
-    //         <span style={{ "--value": timeLeft.minutes }}>{timeLeft.minutes}</span>
-    //       </span>
-    //       min
-    //     </div>
-    //     <div className="flex flex-col p-2 bg-[#006d77] rounded-box text-neutral-content">
-    //       <span className="countdown font-mono text-5xl">
-    //         <span style={{ "--value": timeLeft.seconds }}>{timeLeft.seconds}</span>
-    //       </span>
-    //       sec
-    //     </div>
-    //   </div>
-    //  </div>
-    //  <button className="btn bg-teal-500">Buy Now</button>
-    // </section>
     <section
   style={{ backgroundImage: `url(${BgImage})` }}
   className="w-full h-[300px] bg-no-repeat bg-cover bg-center bg-fixed flex flex-col items-center justify-center text-center space-y-4"

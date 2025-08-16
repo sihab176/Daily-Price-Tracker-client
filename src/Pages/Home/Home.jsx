@@ -6,6 +6,7 @@ import HighlightAdd from "../../component/HighlightAdd/HighlightAdd";
 import ExtraCardSection from "../../component/ExtarCardSection/ExtraCardSection";
 import MarketSection from "../../component/MarketSection/MarketSection";
 import LimitedOffer from "../../component/LimitedOffer/LimitedOffer";
+import ViewReview from "../../component/reviews/ViewReview";
 
 const Home = () => {
   useEffect(() => {
@@ -19,6 +20,9 @@ const Home = () => {
       <ExtraCardSection />
       <MarketSection />
       <LimitedOffer />
+
+      <ViewReview/>
+      
     </div>
   );
 };
