@@ -28,6 +28,7 @@ import Navbar from "../component/Navbar/Navbar";
 import useAuth from "../hooks/useAuth";
 import useUserRole from "../hooks/useUserRole";
 import { LuShoppingBag } from "react-icons/lu";
+import DashboardNavbar from "./DashboardNavbar/DashboardNavbar";
 
 const DashboardLayout = () => {
   useEffect(() => {
@@ -39,9 +40,6 @@ const DashboardLayout = () => {
 
   return (
     <section>
-      <div className="lg:block hidden sticky z-10 top-0">
-        <Navbar />
-      </div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
@@ -88,6 +86,9 @@ const DashboardLayout = () => {
             </div>
             <div className="hidden flex-none lg:block"></div>
           </div>
+          <div className="lg:block hidden sticky z-10 top-0">
+            <DashboardNavbar />
+          </div>
           <Outlet />
         </div>
         <div className="drawer-side fixed">
@@ -96,10 +97,23 @@ const DashboardLayout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 relative">
+          <ul className="menu bg-base-200 text-base-content min-h-full w-80 px-4 relative">
             <div className="lg:hidden">
               <TracLogo></TracLogo>
             </div>
+           <Link to="/">
+            <div className="  md:flex items-center hidden mb-10 ">
+              <img
+                className="h-15 w-16  "
+                src="https://i.ibb.co/FbfP4ZmB/logo-2-removebg-preview.png"
+                alt=""
+              />
+
+              <h1 className="text-2xl font-semibold">
+                Local<span className="text-orange-600">Harvest</span>
+              </h1>
+            </div>
+           </Link>
             <li className="mb-4">
               <NavLink
                 to="/dashboard"
@@ -113,7 +127,7 @@ const DashboardLayout = () => {
                 }
               >
                 <FaHome className="mr-3" />
-                <span>Home</span>
+                <span>Dashboard</span>
               </NavLink>
             </li>
 
@@ -302,7 +316,7 @@ const DashboardLayout = () => {
           </ul>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </section>
   );
 };

@@ -13,8 +13,9 @@ const ProductCard = ({ product, index }) => {
   const todayPrice = product?.prices.find((p) => p.date === today);
 
   const handleViewDetails = () => {
-    if (!user) navigate("/login");
-    else navigate(`/productDetails/${product._id}`);
+    // if (!user) navigate("/login");
+    // else navigate(`/productDetails/${product._id}`);
+    navigate(`/productDetails/${product._id}`);
   };
 
   return (

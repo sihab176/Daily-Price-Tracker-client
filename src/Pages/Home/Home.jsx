@@ -20,7 +20,6 @@ const Home = () => {
       <ExtraCardSection />
       <MarketSection />
       <LimitedOffer />
-
       <ViewReview/>
       
     </div>
