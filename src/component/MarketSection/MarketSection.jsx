@@ -203,9 +203,9 @@ const MarketSection = () => {
             src="https://i.ibb.co.com/spr1rS5j/apple-removebg-preview.png"
             alt="fruit"
             className=""
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            // initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           />
         </motion.div>
 

@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
-  <div className="font-urbanist ">
+  <div className="inter-font">
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />

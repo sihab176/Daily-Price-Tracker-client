@@ -1,6 +1,6 @@
 import React from "react";
 import Offer from "../../assets/offer-removebg-preview.png";
-import Boom from "../../assets/boom-2-removebg-preview.png";
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useQuery } from "@tanstack/react-query";

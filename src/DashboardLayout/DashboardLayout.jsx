@@ -84,7 +84,7 @@ const DashboardLayout = () => {
                 )}
               </div>
             </div>
-            <div className="hidden flex-none lg:block"></div>
+            {/* <div className="hidden flex-none lg:block"></div> */}
           </div>
           <div className="lg:block hidden sticky z-10 top-0">
             <DashboardNavbar />
@@ -102,7 +102,7 @@ const DashboardLayout = () => {
               <TracLogo></TracLogo>
             </div>
            <Link to="/">
-            <div className="  md:flex items-center hidden mb-10 ">
+            <div className="  lg:flex items-center hidden mb-10 ">
               <img
                 className="h-15 w-16  "
                 src="https://i.ibb.co/FbfP4ZmB/logo-2-removebg-preview.png"
