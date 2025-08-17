@@ -7,6 +7,7 @@ import ExtraCardSection from "../../component/ExtarCardSection/ExtraCardSection"
 import MarketSection from "../../component/MarketSection/MarketSection";
 import LimitedOffer from "../../component/LimitedOffer/LimitedOffer";
 import ViewReview from "../../component/reviews/ViewReview";
+import CategorySection from "../../component/CategorySection/CategorySection";
 
 const Home = () => {
   useEffect(() => {
@@ -20,8 +21,8 @@ const Home = () => {
       <ExtraCardSection />
       <MarketSection />
       <LimitedOffer />
-      <ViewReview/>
-      
+      <ViewReview />
+      <CategorySection />
     </div>
   );
 };

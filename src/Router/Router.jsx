@@ -23,6 +23,7 @@ import Error from "../Pages/Error/Error";
 import Forbidden from "../Pages/Forbidden/Forbidden";
 import AdminRoute from "../Secure/AdminRoute";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,8 @@ export const router = createBrowserRouter([
       { path: "/productDetails/:id", Component: ProductDetails },
       { path: "/allProduct", Component: AllProducts },
       { path: "/contact", Component: ContactUs },
+      { path: "/about", Component: AboutUs },
+      
     ],
   },
   {

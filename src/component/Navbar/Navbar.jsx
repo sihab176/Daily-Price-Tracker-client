@@ -38,19 +38,26 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard">DashBoard</NavLink>
-      </li>
+      {user && (
+        <li>
+          <NavLink to="/dashboard">DashBoard</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/allProduct"> All Products</NavLink>
       </li>
       <li>
         <NavLink to="/contact">Contact us</NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink to="/about">About us</NavLink>
+        </li>
+      )}
     </>
   );
   return (
-    <div className="navbar bg-base-200 shadow-sm ">
+    <div className="navbar bg-base-200 shadow-sm  md:pr-5">
       <div className="navbar-start">
         <div className="dropdown ">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -165,7 +172,7 @@ const Navbar = () => {
       <div className="navbar-end flex items-center ">
         {user ? (
           <img
-            className="rounded-full w-9 mr-4 border-3 border-primary"
+            className="rounded-full w-9 h-9 mr-4 border-3 border-primary"
             src={user?.photoURL}
             alt=""
           />

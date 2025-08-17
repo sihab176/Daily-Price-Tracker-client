@@ -55,7 +55,7 @@ const ReviewSection = ({ productId, user }) => {
           <div className=" flex flex-col md:flex-row">
             <div className="">
               <img
-                className="rounded-full w-10"
+                className="rounded-full w-10 h-10"
                 src={rev.userPhoto}
                 alt="Rating user"
               />
@@ -65,11 +65,11 @@ const ReviewSection = ({ productId, user }) => {
                 <strong>{rev.userName}</strong>
                 <span className="text-sm text-gray-500 ml-2">{rev.date}</span>
               </p>
-              
+
               <Rating
                 emptySymbol={<FaRegStar className="mx-1 cursor-pointer" />}
                 fullSymbol={
-                  <FaStar  className="mx-1 cursor-pointer text-yellow-400 " />
+                  <FaStar className="mx-1 cursor-pointer text-yellow-400 " />
                 }
                 fractions={1}
                 initialRating={rev.rating}

@@ -34,21 +34,24 @@ const ContactUs = () => {
             whileFocus={{ scale: 1.05 }}
             type="text"
             placeholder="Your Name"
-            className="w-full p-3 rounded-xl bg-white/80 border-teal-400 border focus:ring-2 focus:ring-teal-800"
+            required
+            className="w-full p-3 rounded-xl  border-teal-400 border focus:ring-2 focus:ring-teal-800"
           />
 
           <motion.input
             whileFocus={{ scale: 1.05 }}
             type="email"
             placeholder="Your Email"
-            className="w-full p-3 rounded-xl bg-white/80 border-teal-400 border focus:ring-2 focus:ring-teal-800"
+            required
+            className="w-full p-3 rounded-xl  border-teal-400 border focus:ring-2 focus:ring-teal-800"
           />
 
           <motion.textarea
             whileFocus={{ scale: 1.05 }}
             rows="4"
             placeholder="Your Message"
-            className="w-full p-3 rounded-xl bg-white/80 border-teal-400 border focus:ring-2 focus:ring-teal-800"
+            required
+            className="w-full p-3 rounded-xl  border-teal-400 border focus:ring-2 focus:ring-teal-800"
           ></motion.textarea>
 
           <motion.button

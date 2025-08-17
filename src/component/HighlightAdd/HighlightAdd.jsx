@@ -22,7 +22,8 @@ const HighlightAdd = () => {
   console.log(advertisement);
 
   return (
-    <div>
+    <div className="pt-15">
+      <h1 className="text-3xl font-bold text-center mb-7">advertisement</h1>
       <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
         {advertisement?.map((add) => (
           <div className="bg-gradient-to-r from-[#68d8d6] via-[#9ceaef] to-white rounded-xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">

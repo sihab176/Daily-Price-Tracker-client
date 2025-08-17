@@ -1,9 +1,10 @@
 import { use, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const ProfileSection = () => {
-  const { user, updateUser } = use(AuthContext);
+  const { user, updateUser, setUser } = use(AuthContext);
 
   const [editMode, setEditMode] = useState(false);
   //   const [profile, setProfile] = useState();
@@ -20,14 +21,23 @@ const ProfileSection = () => {
       email: email,
     };
     updateUser(userProfileInfo).then(() => {
-      toast.success("successfully updated");
+      Swal.fire({
+        icon: "success",
+        title: "profile updated",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setUser((prev) => ({
+        ...prev,
+        ...userProfileInfo,
+      }));
     });
 
     setEditMode(false);
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto p-6 bg-white rounded-2xl shadow-lg">
+    <div className="w-full max-w-lg mx-auto p-6  rounded-2xl shadow-lg">
       {/* Profile Photo */}
       <div className="flex flex-col items-center gap-4">
         <img

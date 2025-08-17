@@ -307,7 +307,7 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
-            <li className="mb-4 absolute bottom-20">
+            <li className="mb-4 absolute bottom-8">
               <Link to="/logout" className="text-red-400 gap-3 ">
                 <IoLogOutOutline size={24} />
                 Logout

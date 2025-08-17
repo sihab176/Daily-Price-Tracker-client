@@ -44,7 +44,7 @@ const ViewReview = () => {
   return (
     <div>
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+        <h2 className="text-3xl font-bold text-center mb-12">
           Customer Reviews
         </h2>
 
@@ -74,7 +74,7 @@ const ViewReview = () => {
                   </div>
                 </div>
 
-                <div className="mb-6 relative z-10">
+                <div className="mb-6 relative ">
                   <Rating
                     emptySymbol={<FaRegStar className="mx-1 cursor-pointer" />}
                     fullSymbol={

@@ -177,7 +177,7 @@ const MarketSection = () => {
           {logos.slice(0, 3).map((logo, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-start p-4 rounded-xl bg-white shadow-lg cursor-pointer"
+              className="flex flex-col items-start p-4 rounded-xl bg-base-200 shadow-lg cursor-pointer"
               variants={item}
               whileHover="hover"
             >
@@ -214,7 +214,7 @@ const MarketSection = () => {
           {logos.slice(3, 6).map((logo, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-start p-4 rounded-xl bg-white shadow-lg cursor-pointer"
+              className="flex flex-col items-start p-4 rounded-xl bg-base-200 shadow-lg cursor-pointer"
               variants={item}
               whileHover="hover"
             >

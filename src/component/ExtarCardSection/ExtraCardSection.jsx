@@ -30,8 +30,8 @@ const ExtraCardSection = () => {
   ];
 
   return (
-    <div className="py-16 px-4 max-w-7xl mx-auto text-center">
-      <h2 className="text-3xl font-semibold my-9">Taste of Nature</h2>
+    <div className="pt-12 px-4  text-center">
+      <h2 className="text-3xl font-semibold mb-8">Taste of Nature</h2>
 
       <div className="grid md:grid-cols-3  gap-28">
         {fruits.map((fruit, idx) => (
